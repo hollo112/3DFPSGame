@@ -14,6 +14,9 @@ public class PlayerMove : MonoBehaviour
     public float Gravity = -9.81f;
     // 점프력
     public float JumpForce = 5f;
+    private bool _canDoubleJump = true;
+    private float _doubleJumpStaminaCost = 10f;
+    
     // 스태미나
     public float MaxStamina = 100f;
     private float _currentStamina;
@@ -47,9 +50,23 @@ public class PlayerMove : MonoBehaviour
         
         Vector3 direction = new Vector3(h, 0f, v).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Space) && _characterController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            _yVelocity = JumpForce;
+            if (_characterController.isGrounded)
+            {
+                _yVelocity = JumpForce;
+                _canDoubleJump = true;
+            }
+            else if (_canDoubleJump)
+            {
+                if (_currentStamina <= _doubleJumpStaminaCost) return;
+                
+                _yVelocity = JumpForce;
+                _canDoubleJump  = false;
+                _currentStamina -= _doubleJumpStaminaCost;
+                if (_rechargeRoutine == null)
+                    _rechargeRoutine = StartCoroutine(RechargeStamina());
+            }
         }
         Debug.Log("Current move speed: " + _currentMoveSpeed);
         
@@ -61,7 +78,7 @@ public class PlayerMove : MonoBehaviour
     
     private void HandleStaminaBoost()
     {
-        bool isBoosting = Input.GetKey(KeyCode.LeftShift) && _currentStamina > 0;
+        bool isBoosting = Input.GetKey(KeyCode.LeftShift) && _currentStamina > 0f;
         
         if (isBoosting)
         {
