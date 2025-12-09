@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour
     private float _staminaUsePerSecond = 10f;
     private float _staminaRegainPerSecond = 5f;
     private const float DoubleJumpStaminaCost = 10f;
+    private const float StaminaRechargeDelay = 1f; 
     
     private Coroutine _rechargeRoutine;
     
@@ -61,12 +62,6 @@ public class PlayerMove : MonoBehaviour
         else
         {
             StopBoost();
-        }
-        _currentStamina = Mathf.Clamp(_currentStamina, 0f, MaxStamina);
-        
-        if (_staminaSlider != null)
-        {
-            _staminaSlider.value = _currentStamina;
         }
     }
     
@@ -122,8 +117,8 @@ public class PlayerMove : MonoBehaviour
         if (_currentStamina < amount) return false;
 
         ConsumeStamina(amount);
-        StopRechargeRoutine();     // 소비하면 충전 중지
-        StartRechargeRoutine();    // 다시 충전 시작
+        StopRechargeRoutine();     
+        StartRechargeRoutine();   
 
         return true;
     }
@@ -131,7 +126,7 @@ public class PlayerMove : MonoBehaviour
     private void ConsumeStamina(float amount)
     {
         _currentStamina -= amount;
-        _currentStamina = Mathf.Clamp(_currentStamina, 0, MaxStamina);
+        _currentStamina = Mathf.Clamp(_currentStamina, 0f, MaxStamina);
     }
 
     private void StartRechargeRoutine()
@@ -149,18 +144,20 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    private const float StaminaRechargeInterval = 0.1f;
+    private const float StaminaRechargeStepsPerSecond = 10f;
     private IEnumerator RechargeStamina()
     {
-        yield return new WaitForSeconds(1f); 
+        yield return new WaitForSeconds(StaminaRechargeDelay); 
 
         while (_currentStamina < MaxStamina)
         {
-            _currentStamina += _staminaRegainPerSecond / 10f;
+            _currentStamina += _staminaRegainPerSecond / StaminaRechargeStepsPerSecond;
 
             if (_currentStamina > MaxStamina)
                 _currentStamina = MaxStamina;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(StaminaRechargeInterval);
         }
 
         _rechargeRoutine = null;
