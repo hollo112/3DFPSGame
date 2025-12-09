@@ -7,11 +7,6 @@ public class PlayerRotate : MonoBehaviour
     
     private void Update()
     {
-        if (!Input.GetMouseButton(1))
-        {
-            return;
-        }
-        
         // 마우스 입력 받기
         float mouseX = Input.GetAxis("Mouse X");
         // 마우스 입력을 누적한다
