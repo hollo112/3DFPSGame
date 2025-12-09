@@ -6,28 +6,32 @@ using UnityEngine.UI;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMove : MonoBehaviour
 {
-    // 필요 속성
-    // 이동속도
+    [Header("Speed")]
     public float NormalSpeed = 5f;
+    public float BoostSpeed = 8f;
     private float _currentMoveSpeed = 0f;
-    // 중력
+    
+    [Header("Gravity")]
     public float Gravity = -9.81f;
-    // 점프력
+    [Header("Jump")]
     public float JumpForce = 5f;
     private bool _canDoubleJump = true;
-    private float _doubleJumpStaminaCost = 10f;
+    private float _yVelocity = 0f;  // 중력에 의해 누적될 y값 변수
     
-    // 스태미나
-    public float MaxStamina = 100f;
+    [Header("Stamina")]
+    private const float MaxStamina = 100f;
     private float _currentStamina;
+    
     private float _staminaUsePerSecond = 10f;
     private float _staminaRegainPerSecond = 5f;
-    public float BoostSpeed = 8f;
+    private const float DoubleJumpStaminaCost = 10f;
+    
     private Coroutine _rechargeRoutine;
+    
+    [Header("UI")]
     [SerializeField] private Slider _staminaSlider;
     
     private CharacterController _characterController;
-    private float _yVelocity = 0f;  // 중력에 의해 누적될 y값 변수
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -36,44 +40,14 @@ public class PlayerMove : MonoBehaviour
     private void Start()
     {
         _currentStamina = MaxStamina;
+        _currentMoveSpeed = NormalSpeed;
     }
     private void Update()
     {
         HandleStaminaBoost();
-        
-        // 중력을 누적한다
-        _yVelocity += Gravity * Time.deltaTime;
-        
-        // 키보드 입력 받기
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        
-        Vector3 direction = new Vector3(h, 0f, v).normalized;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (_characterController.isGrounded)
-            {
-                _yVelocity = JumpForce;
-                _canDoubleJump = true;
-            }
-            else if (_canDoubleJump)
-            {
-                if (_currentStamina <= _doubleJumpStaminaCost) return;
-                
-                _yVelocity = JumpForce;
-                _canDoubleJump  = false;
-                _currentStamina -= _doubleJumpStaminaCost;
-                if (_rechargeRoutine == null)
-                    _rechargeRoutine = StartCoroutine(RechargeStamina());
-            }
-        }
-        Debug.Log("Current move speed: " + _currentMoveSpeed);
-        
-        direction = Camera.main.transform.TransformDirection(direction); 
-        direction.y = _yVelocity;
-        
-        _characterController.Move(direction * _currentMoveSpeed * Time.deltaTime);
+        HandleJumpInput();
+        ApplyMovement();
+        UpdateUI();
     }
     
     private void HandleStaminaBoost()
@@ -99,39 +73,90 @@ public class PlayerMove : MonoBehaviour
     private void StartBoost()
     {
         _currentMoveSpeed = BoostSpeed;
-        _currentStamina -= _staminaUsePerSecond * Time.deltaTime;
-        
+        ConsumeStamina(_staminaUsePerSecond * Time.deltaTime);
+
+        StopRechargeRoutine();
+    }
+
+    private void StopBoost()
+    {
+        if (_currentMoveSpeed == NormalSpeed) return;
+
+        _currentMoveSpeed = NormalSpeed;
+
+        StartRechargeRoutine();
+    }
+    
+    private void HandleJumpInput()
+    {
+        if (!Input.GetKeyDown(KeyCode.Space)) return;
+
+        if (_characterController.isGrounded)
+        {
+            _yVelocity = JumpForce;
+            _canDoubleJump = true;
+        }
+        else if (_canDoubleJump && TryUseStamina(DoubleJumpStaminaCost))
+        {
+            _yVelocity = JumpForce;
+            _canDoubleJump = false;
+        }
+    }
+    
+    private void ApplyMovement()
+    {
+        _yVelocity += Gravity * Time.deltaTime;
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(h, 0, v).normalized;
+
+        direction = Camera.main.transform.TransformDirection(direction);
+        direction.y = _yVelocity;
+
+        _characterController.Move(direction * _currentMoveSpeed * Time.deltaTime);
+    }
+    
+    private bool TryUseStamina(float amount)
+    {
+        if (_currentStamina < amount) return false;
+
+        ConsumeStamina(amount);
+        StopRechargeRoutine();     // 소비하면 충전 중지
+        StartRechargeRoutine();    // 다시 충전 시작
+
+        return true;
+    }
+
+    private void ConsumeStamina(float amount)
+    {
+        _currentStamina -= amount;
+        _currentStamina = Mathf.Clamp(_currentStamina, 0, MaxStamina);
+    }
+
+    private void StartRechargeRoutine()
+    {
+        if (_rechargeRoutine == null)
+            _rechargeRoutine = StartCoroutine(RechargeStamina());
+    }
+
+    private void StopRechargeRoutine()
+    {
         if (_rechargeRoutine != null)
         {
             StopCoroutine(_rechargeRoutine);
             _rechargeRoutine = null;
         }
-        
-        if (_currentStamina <= 0f)
-        {
-            _currentStamina = 0f;
-            StopBoost(); 
-        }
     }
 
-    private void StopBoost()
-    {
-        if (_currentMoveSpeed == NormalSpeed)
-            return;
-
-        _currentMoveSpeed = NormalSpeed;
-
-        if (_rechargeRoutine == null)
-            _rechargeRoutine = StartCoroutine(RechargeStamina());
-    }
-    
     private IEnumerator RechargeStamina()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f); 
 
         while (_currentStamina < MaxStamina)
         {
-            _currentStamina += _staminaRegainPerSecond / 10;
+            _currentStamina += _staminaRegainPerSecond / 10f;
+
             if (_currentStamina > MaxStamina)
                 _currentStamina = MaxStamina;
 
@@ -139,5 +164,11 @@ public class PlayerMove : MonoBehaviour
         }
 
         _rechargeRoutine = null;
+    }
+    
+    private void UpdateUI()
+    {
+        if (_staminaSlider != null)
+            _staminaSlider.value = _currentStamina;
     }
 }
