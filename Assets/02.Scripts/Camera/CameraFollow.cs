@@ -7,7 +7,6 @@ public class CameraFollow : MonoBehaviour
     public Transform FirstPersonView;
     public Transform ThirdPersonView;
     public float TweenDuration = 0.5f;
-
     private Vector3 _currentOffset = Vector3.zero;
     private Vector3 _finalOffset;    
     private bool _isOffsetApplied = false; 
