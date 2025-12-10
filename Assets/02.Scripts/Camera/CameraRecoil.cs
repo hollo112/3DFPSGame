@@ -7,7 +7,6 @@ public class CameraRecoil : MonoBehaviour
     [SerializeField] private AnimationCurve _yawCurve;
     [SerializeField] private float _recoilDuration = 0.1f;
     [SerializeField] private float _accumulationStrength = 0.2f;
-    [SerializeField] private float _accumulationRecovery = 2f;    
     private float _accumulatedRecoil = 0f; // 누적 반동값
     
     [Header("카메라")]
@@ -41,12 +40,6 @@ public class CameraRecoil : MonoBehaviour
             _pitchOffset = _pitchCurve.Evaluate(recoilTime);
             _yawOffset   = _yawCurve.Evaluate(recoilTime);
         }
-
-        _accumulatedRecoil = Mathf.Lerp(
-            _accumulatedRecoil,
-            0f,
-            Time.deltaTime * _accumulationRecovery
-        );
 
         float finalPitch = -(_pitchOffset + _accumulatedRecoil);
         float finalYaw   = _yawOffset;
