@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour
     private CharacterController _characterController;
     private PlayerStats _stats;
     
+    public Vector3 MoveVector;
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
@@ -97,6 +98,7 @@ public class PlayerMove : MonoBehaviour
         direction = Camera.main.transform.TransformDirection(direction);
         direction.y = _yVelocity;
 
+        MoveVector = direction * _speed * Time.deltaTime;
         _characterController.Move(direction * _speed * Time.deltaTime);
     }
 }

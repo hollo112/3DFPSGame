@@ -4,7 +4,8 @@ public class PlayerStats : MonoBehaviour
 {
     public ConsumableStat Health;
     public ConsumableStat Stamina;
-
+    public ConsumableStat BombCount;
+    
     public ValueStat Damage;
     public ValueStat WalkSpeed;
     public ValueStat RunSpeed;
