@@ -26,6 +26,8 @@ public class PlayerGunFire : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
+            if (_isReloading) return;
+            
             if (rayGun.TryFire())
             {
                 recoil.PlayRecoil(rayGun.RecoilPower);
