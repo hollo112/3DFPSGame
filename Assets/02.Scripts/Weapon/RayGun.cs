@@ -5,7 +5,6 @@ public class RayGun : MonoBehaviour, IFireMode
 {
     [SerializeField] private Transform _fireTransform;
     [SerializeField] private ParticleSystem _hitEffect;
-    [SerializeField] private CameraRecoil _cameraRecoil;
     private Magazine _magazine;
     
     public float FireCooldown = 0.1f;
@@ -26,7 +25,6 @@ public class RayGun : MonoBehaviour, IFireMode
         Fire();
         StartCoroutine(FireCooldownRoutine());
         
-        _cameraRecoil.ApplyRecoil(RecoilPower);
         return true;
     }
 

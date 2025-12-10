@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerGunFire : MonoBehaviour
 {
     [SerializeField] private RayGun rayGun;
+    [SerializeField] private CameraRecoil recoil;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -12,7 +13,10 @@ public class PlayerGunFire : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            rayGun.TryFire();
+            if (rayGun.TryFire())
+            {
+                recoil.PlayRecoil(rayGun.RecoilPower);
+            }
         }
     }
 }

@@ -1566,7 +1566,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585550}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1692,7 +1692,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &330585550
+--- !u!114 &330585548
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1701,12 +1701,97 @@ MonoBehaviour:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3af5f7c5327014686121396266a027, type: 3}
+  m_Script: {fileID: 11500000, guid: f18d2f7527bbf554890181d8baa17875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pitchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.44334123
+      value: 0.6785949
+      inSlope: -0.9103409
+      outSlope: -0.9103409
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9711914
+      value: 0.021083832
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _yawCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.14030868
+      value: 0.44062084
+      inSlope: 1.0547533
+      outSlope: 1.0547533
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.39929995
+      value: -0.27283847
+      inSlope: 0.2569659
+      outSlope: 0.2569659
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.61917025
+      value: 0.44365102
+      inSlope: 1.4120015
+      outSlope: 1.4120015
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9819079
+      value: 0.022016227
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _recoilDuration: 0.1
+  _accumulationStrength: 0.2
+  _accumulationRecovery: 2
   _cameraPivot: {fileID: 330585546}
-  _recoilAngle: 2
-  _recoverySpeed: 10
 --- !u!1 &342904566
 GameObject:
   m_ObjectHideFlags: 0
@@ -4349,7 +4434,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireTransform: {fileID: 492205139}
   _hitEffect: {fileID: 1864059906}
-  _cameraRecoil: {fileID: 330585550}
   FireCooldown: 0.1
 --- !u!1001 &1372638611
 PrefabInstance:
@@ -5648,6 +5732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayGun: {fileID: 1316372156}
+  recoil: {fileID: 330585548}
 --- !u!1 &1790590914
 GameObject:
   m_ObjectHideFlags: 0
