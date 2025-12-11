@@ -6,12 +6,19 @@ public class PlayerGunFire : MonoBehaviour
 {
     [SerializeField] private RayGun _rayGun;
     [SerializeField] private CameraRecoil _cameraRecoil;
+    private PlayerStats _playerStats;
+    
     private float _reloadTime = 0.6f;
     private bool _isReloading = false;
     public float ReloadProgress { get; private set; }
     public event Action<float> OnReloadProgressChanged;
     public event Action OnReloadStarted;
     public event Action OnReloadFinished;
+
+    private void Awake()
+    {
+        _playerStats = GetComponent<PlayerStats>();
+    }
     
     private void Update()
     {
@@ -28,7 +35,7 @@ public class PlayerGunFire : MonoBehaviour
         {
             if (_isReloading) return;
             
-            if (_rayGun.TryFire())
+            if (_rayGun.TryFire(_playerStats.Damage.Value))
             {
                 _cameraRecoil.PlayRecoil(_rayGun.RecoilData);
             }

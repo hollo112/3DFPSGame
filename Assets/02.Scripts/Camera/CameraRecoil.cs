@@ -2,15 +2,17 @@ using UnityEngine;
 
 public class CameraRecoil : MonoBehaviour
 {
+    [SerializeField] private CameraRotate _cameraRotate;
     private float _accumulatedRecoil = 0f; // 누적 반동값
+    
     private RecoilData _recoilData;
     
     private float _timer;
     private bool _isRecoiling;
 
-    private float _pitchOffset;
-    private float _yawOffset;
-
+    private float _recoilOffsetPitch;
+    private float _recoilOffsetYaw;
+    
     public void PlayRecoil(RecoilData recoilData)
     {
         _recoilData = recoilData;
@@ -24,19 +26,28 @@ public class CameraRecoil : MonoBehaviour
         if (_isRecoiling)
         {
             _timer += Time.deltaTime;
-            float recoilTime = _timer / _recoilData.RecoilDuration;
-            if (recoilTime >= 1f)
-            {
-                _isRecoiling = false;
-                recoilTime = 1f;
-            }
+            float t = Mathf.Clamp01(_timer / _recoilData.RecoilDuration);
 
-            _pitchOffset = _recoilData.PitchCurve.Evaluate(recoilTime);
-            _yawOffset   = _recoilData.YawCurve.Evaluate(recoilTime);
+            _recoilOffsetPitch = _recoilData.PitchCurve.Evaluate(t);
+            _recoilOffsetYaw   = _recoilData.YawCurve.Evaluate(t);
+
+            if (t >= 1f) _isRecoiling = false;
+        }
+        
+        float deltaPitch = _cameraRotate.DeltaPitch;
+        if (deltaPitch > 0f)
+        {
+            _accumulatedRecoil -= deltaPitch;
+            
+            if (_accumulatedRecoil < 0f)
+                _accumulatedRecoil = 0f;
         }
 
-        float finalPitch = -(_pitchOffset + _accumulatedRecoil);
-        float finalYaw   = _yawOffset;
+        
+        _accumulatedRecoil = Mathf.Lerp(_accumulatedRecoil, 0, Time.deltaTime);
+
+        float finalPitch = -(_recoilOffsetPitch + _accumulatedRecoil);
+        float finalYaw   = _recoilOffsetYaw;
 
         transform.localRotation = Quaternion.Euler(finalPitch, finalYaw, 0);
     }

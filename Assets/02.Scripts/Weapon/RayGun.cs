@@ -17,12 +17,12 @@ public class RayGun : MonoBehaviour, IFireMode
         RecoilData = GetComponent<RecoilData>();
     }
 
-    public bool TryFire()
+    public bool TryFire(float damage)
     {
         if (_isCoolDown) return false;      
         if (_magazine.MagzineSize <= 0) return false;
 
-        Fire();
+        Fire(damage);
         StartCoroutine(FireCooldownRoutine());
         
         return true;
@@ -35,7 +35,7 @@ public class RayGun : MonoBehaviour, IFireMode
         _isCoolDown = false;
     }
 
-    private void Fire()
+    private void Fire(float damage)
     {
         _magazine.DecreaseMagazineSize(1);
 
@@ -45,6 +45,11 @@ public class RayGun : MonoBehaviour, IFireMode
             _hitEffect.transform.position = hitInfo.point;
             _hitEffect.transform.forward = hitInfo.normal;
             _hitEffect.Play();
+
+            if (hitInfo.collider.TryGetComponent(out Monster monster))
+            {
+                monster.TryTakeDamage(damage);
+            }
         }
     }
 
