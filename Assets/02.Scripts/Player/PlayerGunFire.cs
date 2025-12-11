@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerGunFire : MonoBehaviour
 {
-    [SerializeField] private RayGun rayGun;
-    [SerializeField] private CameraRecoil recoil;
+    [SerializeField] private RayGun _rayGun;
+    [SerializeField] private CameraRecoil _cameraRecoil;
     private float _reloadTime = 0.6f;
     private bool _isReloading = false;
     public float ReloadProgress { get; private set; }
@@ -28,9 +28,9 @@ public class PlayerGunFire : MonoBehaviour
         {
             if (_isReloading) return;
             
-            if (rayGun.TryFire())
+            if (_rayGun.TryFire())
             {
-                recoil.PlayRecoil(rayGun.RecoilPower);
+                _cameraRecoil.PlayRecoil(_rayGun.RecoilData);
             }
         }
     }
@@ -53,7 +53,7 @@ public class PlayerGunFire : MonoBehaviour
             
             yield return null;
         }
-        rayGun.Reload();
+        _rayGun.Reload();
         
         _isReloading = false;
         OnReloadFinished?.Invoke();

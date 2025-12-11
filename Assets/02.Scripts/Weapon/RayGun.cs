@@ -5,16 +5,16 @@ public class RayGun : MonoBehaviour, IFireMode
 {
     [SerializeField] private Transform _fireTransform;
     [SerializeField] private ParticleSystem _hitEffect;
+    public RecoilData RecoilData{get; private set;}
     private Magazine _magazine;
     
     public float FireCooldown = 0.1f;
     private bool _isCoolDown = false;
-
-    public float RecoilPower { get; private set; } = 3f;
     
     private void Awake()
     {
         _magazine = GetComponent<Magazine>();
+        RecoilData = GetComponent<RecoilData>();
     }
 
     public bool TryFire()
