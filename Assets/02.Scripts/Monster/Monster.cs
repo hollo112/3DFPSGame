@@ -14,16 +14,21 @@ public class Monster : MonoBehaviour, IDamageable
     private MonsterStats _stats;
     public  MonsterStats Stats => _stats;
 
-    public float DetectDistance {get; private set;} = 8f;
+    public float DetectDistance {get; private set;} = 10f;
     public float AttackDistance {get; private set;} = 2f;
     public float KnockbackForce {get; private set;} = 4f;
     public float KnockbackDrag {get; private set;} = 7f;
     public float PatrolRadius{ get; private set; } = 3f;
-    public float PatrolPointReach{ get; private set; } = 0.3f;
-    public float PatrolInterval{ get; private set; } = 3f;
-    
+    public float PointReach{ get; private set; } = 0.1f;
+    public float PatrolInterval{ get; private set; } = 2f;
+    public float HitDuration{ get; private set; } = 0.25f;
+    public float DeathDelay{ get; private set; } = 2f;
     private Vector3 _originPosition;
     public Vector3 OriginPosition => _originPosition;
+    
+    private float _yVelocity = 0f;
+    [SerializeField] private float _gravity = -9.81f;
+    public float YVelocity => _yVelocity;
     
     private void Awake()
     {
@@ -70,5 +75,33 @@ public class Monster : MonoBehaviour, IDamageable
         }
 
         return true;
+    }
+    
+    public void Move(Vector3 direction)
+    {
+        Vector3 move = direction;
+        move.y = _yVelocity;
+        _controller.Move(move * _stats.MoveSpeed.Value * Time.deltaTime);
+        ApplyGravity();
+    }
+    
+    public void MoveRaw(Vector3 velocity)
+    {
+        Vector3 move = velocity;
+        move.y = _yVelocity;
+        _controller.Move(move * Time.deltaTime);
+        ApplyGravity();
+    }
+
+    private void ApplyGravity()
+    {
+        if (_controller.isGrounded && _yVelocity < 0)
+        {
+            _yVelocity = -1f;
+        }
+        else
+        {
+            _yVelocity += _gravity * Time.deltaTime;
+        }
     }
 }

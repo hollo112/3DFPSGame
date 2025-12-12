@@ -34,7 +34,7 @@ public class TraceState : IMonsterState
         }
 
         Vector3 direction = (playerPosition - monsterPosition).normalized;
-        _monster.Controller.Move(direction * _monster.Stats.MoveSpeed.Value * Time.deltaTime);
+        _monster.Move(direction);
     }
 
     public void Exit()

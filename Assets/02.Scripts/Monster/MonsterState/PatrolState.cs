@@ -21,9 +21,9 @@ public class PatrolState : IMonsterState
     public void Update()
     {
         Vector3 direction = (_target - _monster.transform.position).normalized;
-        _monster.Controller.Move(direction * _monster.Stats.MoveSpeed.Value * Time.deltaTime);
+        _monster.Move(direction);
 
-        if (Vector3.Distance(_monster.transform.position, _target) < _monster.PatrolPointReach)
+        if (Vector3.Distance(_monster.transform.position, _target) < _monster.PointReach)
         {
             _monster.ChangeState(new IdleState(_monster));
             return;

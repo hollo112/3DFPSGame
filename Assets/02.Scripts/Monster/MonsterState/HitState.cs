@@ -5,7 +5,6 @@ public class HitState : IMonsterState
     private Monster _monster;
     private IMonsterState _previousState;
     private Damage _damage;
-    private float _duration = 0.25f;
     private float _timer = 0f;
     private Vector3 _knockbackVelocity;
 
@@ -30,11 +29,11 @@ public class HitState : IMonsterState
     {
         _timer += Time.deltaTime;
 
-        _monster.Controller.Move(_knockbackVelocity * Time.deltaTime);
+        _monster.MoveRaw(_knockbackVelocity);
 
-        _knockbackVelocity = Vector3.Lerp(_knockbackVelocity, Vector3.zero, _monster.KnockbackDrag * Time.deltaTime);
+        _knockbackVelocity = Vector3.MoveTowards(_knockbackVelocity, Vector3.zero, _monster.KnockbackDrag * Time.deltaTime);
 
-        if (_timer >= _duration)
+        if (_timer >= _monster.HitDuration)
         {
             _monster.ChangeState(_previousState);
         }

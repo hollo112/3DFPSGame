@@ -4,7 +4,6 @@ public class DeathState : IMonsterState
 {
     private Monster _monster;
     private float _timer = 0f;
-    private float _removeDelay = 2f;
 
     public DeathState(Monster monster)
     {
@@ -22,7 +21,7 @@ public class DeathState : IMonsterState
     {
         _timer += Time.deltaTime;
 
-        if (_timer >= _removeDelay)
+        if (_timer >= _monster.DeathDelay)
         {
             GameObject.Destroy(_monster.gameObject);
         }

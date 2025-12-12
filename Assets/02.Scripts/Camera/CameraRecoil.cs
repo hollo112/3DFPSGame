@@ -4,6 +4,7 @@ public class CameraRecoil : MonoBehaviour
 {
     [SerializeField] private CameraRotate _cameraRotate;
     private float _accumulatedRecoil = 0f; // 누적 반동값
+    private float _recoverPower = 1f;
     
     private RecoilData _recoilData;
     
@@ -44,7 +45,7 @@ public class CameraRecoil : MonoBehaviour
         }
 
         
-        _accumulatedRecoil = Mathf.Lerp(_accumulatedRecoil, 0, Time.deltaTime);
+        _accumulatedRecoil = Mathf.Lerp(_accumulatedRecoil, 0, Time.deltaTime * _recoverPower);
 
         float finalPitch = -(_recoilOffsetPitch + _accumulatedRecoil);
         float finalYaw   = _recoilOffsetYaw;

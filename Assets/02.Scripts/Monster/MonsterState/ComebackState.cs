@@ -18,10 +18,10 @@ public class ComebackState : IMonsterState
     {
         Vector3 monsterPosition = _monster.transform.position;
         Vector3 originPosition = _monster.OriginPosition;
-        Vector3 playerPosirion = _monster.Player.transform.position;
+        Vector3 playerPosition = _monster.Player.transform.position;
 
         float toOrigin = Vector3.Distance(monsterPosition, originPosition);
-        float toPlayer = Vector3.Distance(monsterPosition, playerPosirion);
+        float toPlayer = Vector3.Distance(monsterPosition, playerPosition);
 
         if (toPlayer <= _monster.DetectDistance)
         {
@@ -30,9 +30,9 @@ public class ComebackState : IMonsterState
         }
 
         Vector3 direction = (originPosition - monsterPosition).normalized;
-        _monster.Controller.Move(direction * _monster.Stats.MoveSpeed.Value * Time.deltaTime);
-
-        if (toOrigin <= 0.1f)
+        _monster.Move(direction);
+    
+        if (toOrigin <= _monster.PointReach)
         {
             _monster.ChangeState(new PatrolState(_monster));
         }
