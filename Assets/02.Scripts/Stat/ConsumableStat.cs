@@ -44,6 +44,13 @@ public class ConsumableStat
         _maxValue += amount;
     }
     
+    public float ConsumeClamped(float amount)
+    {
+        float damageApplied = Mathf.Min(_value, amount);
+        _value -= damageApplied;
+        return damageApplied;
+    }
+    
     public void Increase(float amount)
     {
         _value += amount;
