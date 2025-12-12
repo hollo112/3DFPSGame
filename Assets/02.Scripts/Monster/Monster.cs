@@ -5,7 +5,7 @@ public class Monster : MonoBehaviour, IDamageable
 {
     public IMonsterState State { get; private set; }
     
-    [SerializeField] private GameObject _player;
+    private GameObject _player;
     private const string PlayerTag = "Player";
     public GameObject Player => _player;
     private PlayerHealth _playerHealth;
@@ -29,13 +29,17 @@ public class Monster : MonoBehaviour, IDamageable
     private float _yVelocity = 0f;
     [SerializeField] private float _gravity = -9.81f;
     public float YVelocity => _yVelocity;
+    private float _rotateSpeed = 10f;
     
     private void Awake()
     {
         _controller = GetComponent<CharacterController>();
         _stats = GetComponent<MonsterStats>();
         _player = GameObject.FindGameObjectWithTag(PlayerTag);
-        _playerHealth = _player.GetComponent<PlayerHealth>();
+        if (_player != null)
+        {
+            _playerHealth = _player.GetComponent<PlayerHealth>();
+        }
     }
     private void Start()
     {
@@ -80,6 +84,8 @@ public class Monster : MonoBehaviour, IDamageable
     
     public void Move(Vector3 direction)
     {
+        RotateToward(direction); 
+        
         Vector3 move = direction;
         move.y = _yVelocity;
         _controller.Move(move * _stats.MoveSpeed.Value * Time.deltaTime);
@@ -93,7 +99,19 @@ public class Monster : MonoBehaviour, IDamageable
         _controller.Move(move * Time.deltaTime);
         ApplyGravity();
     }
+    
+    public void RotateToward(Vector3 direction)
+    {
+        Vector3 rotateDirection = direction;
+        rotateDirection.y = 0f; 
+    
+        if (rotateDirection.sqrMagnitude < 0.0001f)
+            return;
 
+        Quaternion targetRot = Quaternion.LookRotation(rotateDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, _rotateSpeed * Time.deltaTime);
+    }
+    
     private void ApplyGravity()
     {
         if (_controller.isGrounded && _yVelocity < 0)
