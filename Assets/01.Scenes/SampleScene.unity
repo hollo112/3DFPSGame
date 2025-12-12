@@ -3027,12 +3027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6c9ff840d8c7f43b5e8a3d4fb5ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 0
   _player: {fileID: 1736529272}
-  _detectDistance: 8
-  _attackDistance: 2
-  _knockbackForce: 4
-  _knockbackDrag: 7
 --- !u!114 &705487636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3045,6 +3040,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549b40132a4c94f498df31ff2b2b6810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health:
+    _maxValue: 100
+    _value: 100
+    _regenValue: 0
+  Damage:
+    _value: 20
+  MoveSpeed:
+    _value: 3
+  AttackSpeed:
+    _value: 2
 --- !u!1 &781038783
 GameObject:
   m_ObjectHideFlags: 0
@@ -5982,7 +5987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f00efe32b8d724dac18ab2be489f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 0}
 --- !u!1 &1790590914
 GameObject:
   m_ObjectHideFlags: 0
