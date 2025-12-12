@@ -35,7 +35,7 @@ public class RayGun : MonoBehaviour, IFireMode
         _isCoolDown = false;
     }
 
-    private void Fire(float damage)
+    private void Fire(float damageValue)
     {
         _magazine.DecreaseMagazineSize(1);
 
@@ -46,8 +46,9 @@ public class RayGun : MonoBehaviour, IFireMode
             _hitEffect.transform.forward = hitInfo.normal;
             _hitEffect.Play();
 
-            if (hitInfo.collider.TryGetComponent(out Monster monster))
+            if (hitInfo.collider.TryGetComponent(out IDamageable monster))
             {
+                Damage damage = new Damage(damageValue, transform.position);
                 monster.TryTakeDamage(damage);
             }
         }

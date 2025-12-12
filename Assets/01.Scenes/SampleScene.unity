@@ -3029,8 +3029,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 0
   _player: {fileID: 1736529272}
-  _detectDistance: 0
-  _attackDistance: 0
+  _detectDistance: 8
+  _attackDistance: 2
   _knockbackForce: 4
   _knockbackDrag: 7
 --- !u!114 &705487636
@@ -3045,16 +3045,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549b40132a4c94f498df31ff2b2b6810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health:
-    _maxValue: 100
-    _value: 100
-    _regenValue: 0
-  Damage:
-    _value: 10
-  MoveSpeed:
-    _value: 3
-  AttackSpeed:
-    _value: 2
 --- !u!1 &781038783
 GameObject:
   m_ObjectHideFlags: 0
@@ -5786,6 +5776,7 @@ GameObject:
   - component: {fileID: 1736529280}
   - component: {fileID: 1736529281}
   - component: {fileID: 1736529282}
+  - component: {fileID: 1736529283}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -5979,6 +5970,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rayGun: {fileID: 1316372156}
   _cameraRecoil: {fileID: 330585548}
+--- !u!114 &1736529283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736529272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f00efe32b8d724dac18ab2be489f96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stats: {fileID: 0}
 --- !u!1 &1790590914
 GameObject:
   m_ObjectHideFlags: 0
