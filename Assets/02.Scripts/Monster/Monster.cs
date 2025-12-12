@@ -6,6 +6,7 @@ public class Monster : MonoBehaviour, IDamageable
     public IMonsterState State { get; private set; }
     
     [SerializeField] private GameObject _player;
+    private const string PlayerTag = "Player";
     public GameObject Player => _player;
     private PlayerHealth _playerHealth;
     public PlayerHealth PlayerHealth => _playerHealth;
@@ -16,7 +17,6 @@ public class Monster : MonoBehaviour, IDamageable
 
     public float DetectDistance {get; private set;} = 10f;
     public float AttackDistance {get; private set;} = 2f;
-    public float KnockbackForce {get; private set;} = 4f;
     public float KnockbackDrag {get; private set;} = 7f;
     public float PatrolRadius{ get; private set; } = 3f;
     public float PointReach{ get; private set; } = 0.1f;
@@ -34,6 +34,7 @@ public class Monster : MonoBehaviour, IDamageable
     {
         _controller = GetComponent<CharacterController>();
         _stats = GetComponent<MonsterStats>();
+        _player = GameObject.FindGameObjectWithTag(PlayerTag);
         _playerHealth = _player.GetComponent<PlayerHealth>();
     }
     private void Start()
