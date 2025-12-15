@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class MinimapCamera : MonoBehaviour
 {
     [SerializeField] private Transform _target;
