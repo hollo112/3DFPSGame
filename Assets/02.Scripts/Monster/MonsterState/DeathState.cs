@@ -12,8 +12,6 @@ public class DeathState : IMonsterState
 
     public void Enter()
     {
-        Debug.Log("Death State");
-
         // TODO: 죽는 애니메이션 호출
     }
 
@@ -29,6 +27,6 @@ public class DeathState : IMonsterState
 
     public void Exit()
     {
-        Debug.Log("Exit Death");
+        
     }
 }

@@ -17,8 +17,6 @@ public class HitState : IMonsterState
 
     public void Enter()
     {
-        Debug.Log("Hit State");
-
         Vector3 direction = (_monster.transform.position - _damage.AttackerPosition).normalized;
         direction.y = 0;
 
@@ -41,6 +39,6 @@ public class HitState : IMonsterState
 
     public void Exit()
     {
-        Debug.Log("Exit Hit");
+        
     }
 }

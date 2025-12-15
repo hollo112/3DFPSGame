@@ -11,7 +11,7 @@ public class ComebackState : IMonsterState
 
     public void Enter()
     {
-        Debug.Log("Comeback State");
+        
     }
 
     public void Update()
@@ -40,6 +40,6 @@ public class ComebackState : IMonsterState
 
     public void Exit()
     {
-        Debug.Log("Exit Comeback");
+        
     }
 }

@@ -11,7 +11,7 @@ public class TraceState : IMonsterState
 
     public void Enter()
     {
-        Debug.Log("Trace State");
+        
     }
 
     public void Update()
@@ -39,6 +39,6 @@ public class TraceState : IMonsterState
 
     public void Exit()
     {
-        Debug.Log("Exit Trace");
+        
     }
 }

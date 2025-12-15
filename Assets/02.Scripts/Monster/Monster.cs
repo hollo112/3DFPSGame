@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -30,6 +31,8 @@ public class Monster : MonoBehaviour, IDamageable
     [SerializeField] private float _gravity = -9.81f;
     public float YVelocity => _yVelocity;
     private float _rotateSpeed = 10f;
+    
+    public event Action<Damage> OnDamaged;
     
     private void Awake()
     {
@@ -68,7 +71,7 @@ public class Monster : MonoBehaviour, IDamageable
         }
         
         _stats.Health.ConsumeClamped(damage.Value);
-
+        
         if (_stats.Health.Value > 0)
         {
             // 히트 상태
@@ -80,6 +83,8 @@ public class Monster : MonoBehaviour, IDamageable
             ChangeState(new DeathState(this));
         }
 
+        OnDamaged?.Invoke(damage);
+        
         return true;
     }
     
