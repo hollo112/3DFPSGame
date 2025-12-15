@@ -22,21 +22,16 @@ public class MinimapCamera : MonoBehaviour
         
         transform.position = finalPosition;
         
-        Vector3 targetAngle =  _target.eulerAngles;
-        targetAngle.x = 90;
-        transform.eulerAngles = targetAngle;
+        transform.rotation = Quaternion.Euler(90f, _target.eulerAngles.y, 0f);
     }
 
     public void ZoomIn()
     {
-        
-        if (_camera.orthographicSize <= _minZoom) return;
-        _camera.orthographicSize -= _zoomOffset;
+        _camera.orthographicSize = Mathf.Max(_minZoom, _camera.orthographicSize - _zoomOffset);
     }
 
     public void ZoomOut()
     {
-        if (_camera.orthographicSize >= _maxZoom) return;
-        _camera.orthographicSize +=  _zoomOffset;
+        _camera.orthographicSize = Mathf.Min(_maxZoom, _camera.orthographicSize + _zoomOffset);
     }
 }

@@ -9,6 +9,12 @@ public class CursorManager : MonoBehaviour
     public bool IsLocked => _isLocked;
     void Awake()
     {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        
         _instance = this;
         
         LockCursor();

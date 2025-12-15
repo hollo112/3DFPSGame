@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class MonsterHealthBar : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private Image _guageimage;
-    [SerializeField] private Image _delayedGague;
+    [SerializeField] private Image _guageImage;
+    [SerializeField] private Image _delayedGauge;
     [SerializeField] private Transform _healthbarTransform;
     [Header("Color")]
     [SerializeField] private Color _healthbarColor;
@@ -24,7 +24,6 @@ public class MonsterHealthBar : MonoBehaviour
     
     private Monster _monster;
     private MonsterStats _monsterStats;
-    private float _lastHealth = -1f;
     private Tween _delayedTween;
     private Tween _flashTween;
     private Tween _shakeTween;
@@ -36,7 +35,7 @@ public class MonsterHealthBar : MonoBehaviour
 
     private void Start()
     {
-        _guageimage.color = _healthbarColor;    
+        _guageImage.color = _healthbarColor;    
     }
     
     private void OnEnable()
@@ -51,21 +50,21 @@ public class MonsterHealthBar : MonoBehaviour
     
     private void LateUpdate()
     {
-        if (_lastHealth != _monsterStats.Health.Value)
-        {
-            _lastHealth = _monsterStats.Health.Value;
-            _guageimage.fillAmount = GetHealthNormalized();
-        }
-        
         // 빌보드 기법 : 카메라의 위치와 회전에 상관없이 항상 정면을 바라보게 하는 기법
         _healthbarTransform.forward = Camera.main.transform.forward;
     }
 
     private void HandleDamaged(Damage damage)
     {
+        ChangeGauge();
         ChangeDelayGauge();
         FlashGauge();
         ShakeGauge();
+    }
+
+    private void ChangeGauge()
+    {
+        _guageImage.fillAmount = GetHealthNormalized();
     }
 
     private void ChangeDelayGauge()
@@ -73,7 +72,7 @@ public class MonsterHealthBar : MonoBehaviour
         float targetFill = GetHealthNormalized();
         
         _delayedTween?.Kill();
-        _delayedTween = _delayedGague
+        _delayedTween = _delayedGauge
             .DOFillAmount(targetFill, _delayedReduceTime)
             .SetDelay(_delayBeforeReduce)
             .SetEase(Ease.OutQuad);
@@ -83,8 +82,8 @@ public class MonsterHealthBar : MonoBehaviour
     {
         _flashTween?.Kill();
         _flashTween = DOTween.Sequence()
-            .Append(_guageimage.DOColor(_hitFlashColor, _hitFlashStartDuration))
-            .Append(_guageimage.DOColor(_healthbarColor, _hitFlashEndDuration));
+            .Append(_guageImage.DOColor(_hitFlashColor, _hitFlashStartDuration))
+            .Append(_guageImage.DOColor(_healthbarColor, _hitFlashEndDuration));
     }
 
     private void ShakeGauge()
