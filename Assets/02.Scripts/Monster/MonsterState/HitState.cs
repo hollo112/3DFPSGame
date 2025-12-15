@@ -22,7 +22,7 @@ public class HitState : IMonsterState
         Vector3 direction = (_monster.transform.position - _damage.AttackerPosition).normalized;
         direction.y = 0;
 
-        _knockbackVelocity = direction * _monster.KnockbackForce;
+        _knockbackVelocity = direction * _damage.KnockbackForce;
     }
 
     public void Update()

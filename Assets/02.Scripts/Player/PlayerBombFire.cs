@@ -13,6 +13,8 @@ public class PlayerBombFire : MonoBehaviour
     
     private void Update()
     {
+        if (GameManager.Instance.State != EGameState.Playing) return;
+        
         if (Input.GetMouseButtonDown(1))
         {
             if (_stats.BombCount.Value <= 0) return;
@@ -25,7 +27,7 @@ public class PlayerBombFire : MonoBehaviour
             Rigidbody rigidbody = bomb.GetComponent<Rigidbody>();
             rigidbody.AddForce(Camera.main.transform.forward * _throwPower, ForceMode.Impulse);
             
-            _stats.BombCount.Decrease(1);
+            //_stats.BombCount.Decrease(1);
         }
     }
 }
