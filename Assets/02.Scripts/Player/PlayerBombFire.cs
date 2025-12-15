@@ -13,6 +13,8 @@ public class PlayerBombFire : MonoBehaviour
     
     private void Update()
     {
+        if (GameManager.Instance.State != EGameState.Playing) return;
+        
         if (Input.GetMouseButtonDown(1))
         {
             if (_stats.BombCount.Value <= 0) return;

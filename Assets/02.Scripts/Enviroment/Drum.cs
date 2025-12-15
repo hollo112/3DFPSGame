@@ -8,6 +8,7 @@ public class Drum : MonoBehaviour, IDamageable
     [SerializeField] private ConsumableStat _health;
     [SerializeField] private float _damageValue = 50f;
     [SerializeField] private float _danageTime = 0.1f;
+    [SerializeField] private float _destroyTime = 4f;
     [SerializeField] private float _knockbackForce = 15f;
     [SerializeField] private float _explosionRadius = 4f;
     [SerializeField] private float _explosionForce = 15f;
@@ -49,6 +50,10 @@ public class Drum : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(_danageTime);
         
         ExplodeDamage();
+        
+        yield return new WaitForSeconds(_destroyTime);
+        
+        Destroy(gameObject);
     }
     
     private void ExplodeDamage()

@@ -15,6 +15,8 @@ public class CameraRotate : MonoBehaviour
    private float _accumulationY = 0;
    private void Update()
    {
+      if (GameManager.Instance.State != EGameState.Playing) return;
+      
       // 마우스 입력 받기
       float mouseX = Input.GetAxis("Mouse X");
       float mouseY = Input.GetAxis("Mouse Y");

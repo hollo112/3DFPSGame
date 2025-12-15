@@ -56,6 +56,7 @@ public class Monster : MonoBehaviour, IDamageable
     
     private void Update()
     {
+        if (GameManager.Instance.State != EGameState.Playing) return;
         State?.Update();
     }
     
