@@ -1,0 +1,42 @@
+using System;
+using UnityEngine;
+
+public class MinimapCamera : MonoBehaviour
+{
+    [SerializeField] private Transform _target;
+    [SerializeField] private float _offsetY = 10f;
+    [SerializeField] private float _zoomOffset = 2f;
+    [SerializeField] private float _minZoom = 5f;
+    [SerializeField] private float _maxZoom = 13f;
+    private Camera _camera;
+
+    private void Awake()
+    {
+        _camera = GetComponent<Camera>();
+    }
+    
+    private void LateUpdate()
+    {
+        Vector3 targetPosition = _target.position;
+        Vector3 finalPosition = targetPosition + new Vector3(0, _offsetY, 0f);
+        
+        transform.position = finalPosition;
+        
+        Vector3 targetAngle =  _target.eulerAngles;
+        targetAngle.x = 90;
+        transform.eulerAngles = targetAngle;
+    }
+
+    public void ZoomIn()
+    {
+        
+        if (_camera.orthographicSize <= _minZoom) return;
+        _camera.orthographicSize -= _zoomOffset;
+    }
+
+    public void ZoomOut()
+    {
+        if (_camera.orthographicSize >= _maxZoom) return;
+        _camera.orthographicSize +=  _zoomOffset;
+    }
+}

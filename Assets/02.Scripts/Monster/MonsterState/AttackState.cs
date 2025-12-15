@@ -13,7 +13,6 @@ public class AttackState : IMonsterState
     public void Enter()
     {
         _attackTimer = 0f;
-        Debug.Log("Attack State");
     }
 
     public void Update()
@@ -37,8 +36,6 @@ public class AttackState : IMonsterState
         {
             _attackTimer = 0f;
 
-            Debug.Log("플레이어 공격");
-
             Damage damage = new Damage(
                 _monster.Stats.Damage.Value,
                 monsterPosition
@@ -50,6 +47,6 @@ public class AttackState : IMonsterState
 
     public void Exit()
     {
-        Debug.Log("Exit Attack");
+        
     }
 }

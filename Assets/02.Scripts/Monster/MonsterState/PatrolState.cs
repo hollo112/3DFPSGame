@@ -14,8 +14,6 @@ public class PatrolState : IMonsterState
     {
         float patrolRadius = _monster.PatrolRadius;
         _target = _monster.OriginPosition + new Vector3(Random.Range(-patrolRadius, patrolRadius), 0, Random.Range(-patrolRadius, patrolRadius));
-
-        Debug.Log("Patrol State");
     }
 
     public void Update()
@@ -37,6 +35,6 @@ public class PatrolState : IMonsterState
 
     public void Exit()
     {
-        Debug.Log("Exit Patrol");
+        
     }
 }

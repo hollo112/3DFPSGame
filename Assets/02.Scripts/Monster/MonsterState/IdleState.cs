@@ -13,7 +13,6 @@ public class IdleState : IMonsterState
     public void Enter()
     {
         _timer = 0f;
-        Debug.Log("Idle State");
     }
 
     public void Update()
@@ -34,6 +33,6 @@ public class IdleState : IMonsterState
 
     public void Exit()
     {
-        Debug.Log("Exit Idle");
+        
     }
 }
