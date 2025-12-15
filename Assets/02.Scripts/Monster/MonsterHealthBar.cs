@@ -16,14 +16,18 @@ public class MonsterHealthBar : MonoBehaviour
     [SerializeField] private float _delayBeforeReduce = 0.2f;
     [SerializeField] private float _delayedReduceTime = 0.4f;
     [SerializeField] private float _hitFlashStartDuration = 0.05f;
-    [SerializeField] private float _hitFlashEndDuration = 0.2f;
+    [SerializeField] private float _hitFlashEndDuration = 0.3f;
+    [SerializeField] private float _shakeDuration = 0.15f;
+    [SerializeField] private float _shakeStrength = 0.03f;
+    [SerializeField] private int _shakeVibrato = 30;
+    [SerializeField] private float _shakeRandomness = 10f;
     
     private Monster _monster;
     private MonsterStats _monsterStats;
     private float _lastHealth = -1f;
     private Tween _delayedTween;
     private Tween _flashTween;
-    
+    private Tween _shakeTween;
     private void Awake()
     {
         _monsterStats = GetComponent<MonsterStats>();
@@ -59,18 +63,40 @@ public class MonsterHealthBar : MonoBehaviour
 
     private void HandleDamaged(Damage damage)
     {
-        float targetFill = GetHealthNormalized();
+        ChangeDelayGauge();
+        FlashGauge();
+        ShakeGauge();
+    }
 
+    private void ChangeDelayGauge()
+    {
+        float targetFill = GetHealthNormalized();
+        
         _delayedTween?.Kill();
         _delayedTween = _delayedGague
             .DOFillAmount(targetFill, _delayedReduceTime)
             .SetDelay(_delayBeforeReduce)
             .SetEase(Ease.OutQuad);
+    }
 
+    private void FlashGauge()
+    {
         _flashTween?.Kill();
         _flashTween = DOTween.Sequence()
             .Append(_guageimage.DOColor(_hitFlashColor, _hitFlashStartDuration))
             .Append(_guageimage.DOColor(_healthbarColor, _hitFlashEndDuration));
+    }
+
+    private void ShakeGauge()
+    {
+        _shakeTween?.Kill();
+        _shakeTween = _healthbarTransform
+            .DOShakePosition(
+                _shakeDuration,
+                _shakeStrength,
+                _shakeVibrato,
+                _shakeRandomness
+            );
     }
     
     private float GetHealthNormalized()
