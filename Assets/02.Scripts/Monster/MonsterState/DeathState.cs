@@ -1,17 +1,21 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DeathState : IMonsterState
 {
     private Monster _monster;
+    private NavMeshAgent _agent;
     private float _timer = 0f;
 
     public DeathState(Monster monster)
     {
         _monster = monster;
+        _agent = monster.NavMeshAgent;
     }
 
     public void Enter()
     {
+        _agent.isStopped = true;
         // TODO: 죽는 애니메이션 호출
     }
 

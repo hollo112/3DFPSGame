@@ -9,7 +9,11 @@ public class CameraFollow : MonoBehaviour
     private Vector3 _currentOffset = Vector3.zero;
     private Vector3 _finalOffset;    
     private bool _isOffsetApplied = false; 
-    private Tweener _tween;              
+    private Tweener _tween;             
+    
+    [Header("Collision")]
+    public float CollisionPadding = 0.2f;   // 벽에서 살짝 띄우기
+    public LayerMask CollisionMask;          // Wall, Ground 등
 
     private void Start()
     {
@@ -27,7 +31,29 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = FirstPersonView.TransformPoint(_currentOffset);
+        UpdateCameraPositionWithCollision();
+    }
+
+    private void UpdateCameraPositionWithCollision()
+    {
+        Vector3 origin = FirstPersonView.position;
+
+        Vector3 desiredPosition = FirstPersonView.TransformPoint(_currentOffset);
+        Vector3 direction = desiredPosition - origin;
+        float distance = direction.magnitude;
+
+        if (distance > 0.01f)
+        {
+            direction.Normalize();
+
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, distance, CollisionMask))
+            {
+                transform.position = hit.point - direction * CollisionPadding;
+                return;
+            }
+        }
+
+        transform.position = desiredPosition;
     }
 
     private void ChangeView()

@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Monster : MonoBehaviour, IDamageable
 {
@@ -15,13 +15,14 @@ public class Monster : MonoBehaviour, IDamageable
     public CharacterController Controller => _controller;
     private MonsterStats _stats;
     public  MonsterStats Stats => _stats;
-
+    private NavMeshAgent _navMeshAgent;
+    public NavMeshAgent NavMeshAgent => _navMeshAgent;
     public float DetectDistance {get; private set;} = 10f;
     public float AttackDistance {get; private set;} = 2f;
     public float KnockbackDrag {get; private set;} = 7f;
-    public float PatrolRadius{ get; private set; } = 3f;
-    public float PointReach{ get; private set; } = 0.1f;
-    public float PatrolInterval{ get; private set; } = 2f;
+    public float PatrolRadius{ get; private set; } = 6f;
+    public float PointReach{ get; private set; } = 2f;
+    public float PatrolInterval{ get; private set; } = 1.5f;
     public float HitDuration{ get; private set; } = 0.25f;
     public float DeathDelay{ get; private set; } = 2f;
     private Vector3 _originPosition;
@@ -38,6 +39,7 @@ public class Monster : MonoBehaviour, IDamageable
     {
         _controller = GetComponent<CharacterController>();
         _stats = GetComponent<MonsterStats>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag(PlayerTag);
         if (_player != null)
         {
@@ -48,6 +50,8 @@ public class Monster : MonoBehaviour, IDamageable
     {
         _originPosition = transform.position;
         ChangeState(new IdleState(this));
+        _navMeshAgent.speed = _stats.MoveSpeed.Value;
+        _navMeshAgent.stoppingDistance = AttackDistance;
     }
     
     public void ChangeState(IMonsterState newState)
@@ -88,13 +92,9 @@ public class Monster : MonoBehaviour, IDamageable
         return true;
     }
     
-    public void Move(Vector3 direction)
+    public void MoveTo(Vector3 position)
     {
-        RotateToward(direction); 
-        
-        Vector3 move = direction;
-        move.y = _yVelocity;
-        _controller.Move(move * _stats.MoveSpeed.Value * Time.deltaTime);
+        _navMeshAgent.SetDestination(position);
         ApplyGravity();
     }
     

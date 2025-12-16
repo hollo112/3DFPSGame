@@ -29,9 +29,8 @@ public class ComebackState : IMonsterState
             return;
         }
 
-        Vector3 direction = (originPosition - monsterPosition).normalized;
-        _monster.Move(direction);
-    
+        _monster.MoveTo(originPosition);
+        
         if (toOrigin <= _monster.PointReach)
         {
             _monster.ChangeState(new PatrolState(_monster));
