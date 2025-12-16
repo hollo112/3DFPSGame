@@ -37,23 +37,16 @@ public class TraceState : IMonsterState
         }
         
         _monster.MoveTo(playerPosition);
-    }
 
-    public static bool IsOnJumpSurface(Vector3 position, float sampleRadius = 0.5f)
-    {
-        Vector3 samplePos = position + Vector3.down * 1.0f;
-        if (NavMesh.SamplePosition(
-                samplePos,
-                out NavMeshHit hit,
-                sampleRadius,
-                NavMesh.AllAreas))
+        if (_agent.isOnOffMeshLink)
         {
-            int jumpArea = NavMesh.GetAreaFromName("Jump");
-            Debug.Log(jumpArea);
-            return (hit.mask & (1 << jumpArea)) != 0;
-        }
+            OffMeshLinkData data = _agent.currentOffMeshLinkData;
 
-        return false;
+            Vector3 start = _monster.transform.position;
+            Vector3 end   = data.endPos;
+            end.y += _agent.baseOffset;
+            _monster.ChangeState(new JumpState(_monster, start, end));
+        }
     }
 
     public void Exit()
