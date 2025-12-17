@@ -95,7 +95,6 @@ public class Monster : MonoBehaviour, IDamageable
     public void MoveTo(Vector3 position)
     {
         _navMeshAgent.SetDestination(position);
-        ApplyGravity();
     }
     
     public void MoveRaw(Vector3 velocity)

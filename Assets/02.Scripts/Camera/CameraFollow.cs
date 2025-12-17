@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 _thirdPersonOffset;    
     private Vector3 _topViewOffset;    
     private Tweener _tween;             
-    private const float CollisionCheckDistacne = 0.01f;
+    private const float CollisionCheckDistance = 0.01f;
     [Header("Collision")]
     public float CollisionPadding = 0.2f;   // 벽에서 살짝 띄우기
     public LayerMask CollisionMask;          // Wall, Ground 등
@@ -47,7 +47,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 direction = desiredPosition - origin;
         float distance = direction.magnitude;
 
-        if (distance > CollisionCheckDistacne)
+        if (distance > CollisionCheckDistance)
         {
             direction.Normalize();
 

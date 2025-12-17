@@ -5,6 +5,7 @@ public class RayGun : MonoBehaviour, IFireMode
 {
     [SerializeField] private Transform _fireTransform;
     [SerializeField] private ParticleSystem _hitEffect;
+    private const float MaxFireDistance = 1000f;
     public RecoilData RecoilData{get; private set;}
     private Magazine _magazine;
     
@@ -42,19 +43,19 @@ public class RayGun : MonoBehaviour, IFireMode
         Vector3 targetPoint;
         Ray centerRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
-        if (Physics.Raycast(centerRay, out RaycastHit centerHit, 1000f))
+        if (Physics.Raycast(centerRay, out RaycastHit centerHit, MaxFireDistance))
         {
             targetPoint = centerHit.point;
         }
         else
         {
-            targetPoint = Camera.main.transform.position + Camera.main.transform.forward * 1000f;
+            targetPoint = Camera.main.transform.position + Camera.main.transform.forward * MaxFireDistance;
         }
         
         Vector3 fireDirection = (targetPoint - _fireTransform.position).normalized;
         Ray fireRay = new Ray(_fireTransform.position, fireDirection);
 
-        if (Physics.Raycast(fireRay, out RaycastHit fireHit, 1000f))
+        if (Physics.Raycast(fireRay, out RaycastHit fireHit, MaxFireDistance))
         {
             _hitEffect.transform.position = fireHit.point;
             _hitEffect.transform.forward = fireHit.normal;
