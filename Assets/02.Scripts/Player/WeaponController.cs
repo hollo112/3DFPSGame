@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
@@ -7,7 +8,7 @@ public class WeaponController : MonoBehaviour
     
     private int _currentIndex;
     private IPlayerFire _currentWeapon;
-    
+    public event Action<IPlayerFire> OnWeaponChanged;
     private void Awake()
     {
         _weapons = new IPlayerFire[_weaponBehaviours.Length];
@@ -51,5 +52,7 @@ public class WeaponController : MonoBehaviour
         _currentIndex = index;
         _currentWeapon = _weapons[_currentIndex];
         _currentWeapon.OnSelect();
+        
+        OnWeaponChanged?.Invoke(_currentWeapon);
     }
 }
