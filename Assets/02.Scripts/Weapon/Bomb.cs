@@ -62,4 +62,9 @@ public class Bomb : MonoBehaviour
             }
         }
     }
+
+    public void Shoot(float throwPower)
+    {
+        _rigidbody.AddForce(Camera.main.transform.forward * throwPower, ForceMode.Impulse);
+    }
 }

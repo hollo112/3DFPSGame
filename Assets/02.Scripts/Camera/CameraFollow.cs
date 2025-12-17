@@ -42,8 +42,8 @@ public class CameraFollow : MonoBehaviour
     private void UpdateCameraPositionWithCollision()
     {
         Vector3 origin = FirstPersonView.position;
-
         Vector3 desiredPosition = FirstPersonView.TransformPoint(_currentOffset);
+        
         Vector3 direction = desiredPosition - origin;
         float distance = direction.magnitude;
 
