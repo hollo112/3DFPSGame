@@ -23,12 +23,14 @@ public class PlayerMove : MonoBehaviour
     private float _yVelocity = 0f;
     private float _speed;
     private bool _canDoubleJump;
+    private bool _isJumping = false;
     private const float GroundStickVelocity = -2f;
     private Coroutine _rechargeRoutine;
     
     private CharacterController _characterController;
     private PlayerStats _stats;
     private NavMeshAgent _agent;
+    private const float NavMeshSampleDistance = 2f;
     private RaycastHit _rayHitPoint;
     
     public Vector3 MoveVector;
@@ -37,6 +39,9 @@ public class PlayerMove : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _stats =  GetComponent<PlayerStats>();
         _agent = GetComponent<NavMeshAgent>();
+        
+        _agent.updatePosition = false;
+        _agent.updateRotation = true;
     }
 
     private void Update()
@@ -53,6 +58,13 @@ public class PlayerMove : MonoBehaviour
         }
         
         ApplyMovementByKeyboard();
+    }
+    private void LateUpdate()
+    {
+        if (_agent.enabled)
+        {
+            _agent.nextPosition = transform.position;
+        }
     }
     
     private void HandleStaminaBoost()
@@ -93,6 +105,12 @@ public class PlayerMove : MonoBehaviour
         {
             _yVelocity = _stats.JumpPower.Value;
             _canDoubleJump = true;
+            _isJumping = true;
+            
+            if (_agent.enabled)
+            {
+                _agent.enabled = false;
+            }
         }
         else if (_canDoubleJump && _stats.Stamina.Value > Config.JumpStaminaCost)
         {
@@ -104,6 +122,11 @@ public class PlayerMove : MonoBehaviour
     
     private void ApplyMovementByKeyboard()
     {
+        if (_isJumping && _characterController.isGrounded && _yVelocity <= 0f)
+        {
+            OnLanded();
+        }
+        
         if (_characterController.isGrounded && _yVelocity < 0f)
         {
             _yVelocity = GroundStickVelocity; 
@@ -134,6 +157,23 @@ public class PlayerMove : MonoBehaviour
                 _agent.destination = _rayHitPoint.point;
                 _agent.speed = _speed;
             }
+        }
+    }
+    
+    private void OnLanded()
+    {
+        _isJumping = false;
+        _yVelocity = GroundStickVelocity;
+        
+        if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, NavMeshSampleDistance, NavMesh.AllAreas))
+        {
+            transform.position = hit.position;
+            _agent.Warp(hit.position);
+            _agent.enabled = true;
+        }
+        else
+        {
+            _agent.enabled = true;
         }
     }
 }
