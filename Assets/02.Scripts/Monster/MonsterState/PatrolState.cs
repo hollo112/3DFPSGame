@@ -18,8 +18,7 @@ public class PatrolState : IMonsterState
 
     public void Update()
     {
-        Vector3 direction = (_target - _monster.transform.position).normalized;
-        _monster.Move(direction);
+        _monster.MoveTo(_target);
 
         if (Vector3.Distance(_monster.transform.position, _target) < _monster.PointReach)
         {

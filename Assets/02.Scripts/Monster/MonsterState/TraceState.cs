@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TraceState : IMonsterState
 {
     private Monster _monster;
-
+    private NavMeshAgent _agent;
+    
     public TraceState(Monster monster)
     {
         _monster = monster;
+        _agent = monster.NavMeshAgent;
     }
 
     public void Enter()
@@ -32,9 +35,18 @@ public class TraceState : IMonsterState
             _monster.ChangeState(new AttackState(_monster));
             return;
         }
+        
+        _monster.MoveTo(playerPosition);
 
-        Vector3 direction = (playerPosition - monsterPosition).normalized;
-        _monster.Move(direction);
+        if (_agent.isOnOffMeshLink)
+        {
+            OffMeshLinkData data = _agent.currentOffMeshLinkData;
+
+            Vector3 start = _monster.transform.position;
+            Vector3 end   = data.endPos;
+            end.y += _agent.baseOffset;
+            _monster.ChangeState(new JumpState(_monster, start, end));
+        }
     }
 
     public void Exit()

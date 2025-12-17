@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     private float _yVelocity = 0f;
     private float _speed;
     private bool _canDoubleJump;
+    private const float GroundStickVelocity = -2f;
     private Coroutine _rechargeRoutine;
     
     private CharacterController _characterController;
@@ -91,7 +92,14 @@ public class PlayerMove : MonoBehaviour
     
     private void ApplyMovement()
     {
-        _yVelocity += Config.Gravity * Time.deltaTime;
+        if (_characterController.isGrounded && _yVelocity < 0f)
+        {
+            _yVelocity = GroundStickVelocity; 
+        }
+        else
+        {
+            _yVelocity += Config.Gravity * Time.deltaTime;
+        }
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");

@@ -5,15 +5,23 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform FirstPersonView;
     public Transform ThirdPersonView;
+    public Transform Top;
     public float TweenDuration = 0.5f;
     private Vector3 _currentOffset = Vector3.zero;
-    private Vector3 _finalOffset;    
-    private bool _isOffsetApplied = false; 
-    private Tweener _tween;              
+    private Vector3 _firstPersonOffset;  
+    private Vector3 _thirdPersonOffset;    
+    private Vector3 _topViewOffset;    
+    private Tweener _tween;             
+    private const float CollisionCheckDistance = 0.01f;
+    [Header("Collision")]
+    public float CollisionPadding = 0.2f;   // 벽에서 살짝 띄우기
+    public LayerMask CollisionMask;          // Wall, Ground 등
 
     private void Start()
     {
-        _finalOffset = FirstPersonView.InverseTransformPoint(ThirdPersonView.position);
+        _firstPersonOffset = Vector3.zero;
+        _thirdPersonOffset = FirstPersonView.InverseTransformPoint(ThirdPersonView.position);
+        _topViewOffset =  FirstPersonView.InverseTransformPoint(Top.position);
         transform.position = FirstPersonView.position;
     }
 
@@ -21,36 +29,60 @@ public class CameraFollow : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            ChangeView();
+            GameManager.Instance.CycleCameraMode();
+            ChangeView(GameManager.Instance.ViewMode);
         }
     }
 
     private void LateUpdate()
     {
-        transform.position = FirstPersonView.TransformPoint(_currentOffset);
+        UpdateCameraPositionWithCollision();
+    }
+    
+    private void UpdateCameraPositionWithCollision()
+    {
+        Vector3 origin = FirstPersonView.position;
+
+        Vector3 desiredPosition = FirstPersonView.TransformPoint(_currentOffset);
+        Vector3 direction = desiredPosition - origin;
+        float distance = direction.magnitude;
+
+        if (distance > CollisionCheckDistance)
+        {
+            direction.Normalize();
+
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, distance, CollisionMask))
+            {
+                transform.position = hit.point - direction * CollisionPadding;
+                return;
+            }
+        }
+
+        transform.position = desiredPosition;
     }
 
-    private void ChangeView()
+    private void ChangeView(ECameraViewMode cameraViewMode)
     {
-        if (!_isOffsetApplied)
+        Vector3 targetPosition = Vector3.zero;
+        
+        switch (cameraViewMode)
         {
-            _tween = DOTween.To(
-                    () => _currentOffset,
-                    x => _currentOffset = x,
-                    _finalOffset,
-                    TweenDuration
-                ).SetEase(Ease.InOutQuad)
-                .OnComplete(() => _isOffsetApplied = true);
+            case ECameraViewMode.FirstPerson:
+                targetPosition = _firstPersonOffset;
+                break;
+            case ECameraViewMode.ThirdPerson:
+                targetPosition = _thirdPersonOffset;
+                break;
+            case ECameraViewMode.Top:
+                targetPosition = _topViewOffset;
+                break;
         }
-        else
-        {
-            _tween = DOTween.To(
-                    () => _currentOffset,
-                    x => _currentOffset = x,
-                    Vector3.zero,
-                    TweenDuration
-                ).SetEase(Ease.InOutQuad)
-                .OnComplete(() => _isOffsetApplied = false);
-        }
+
+        _tween = DOTween.To(
+            () => _currentOffset,
+            x => _currentOffset = x,
+            targetPosition,
+            TweenDuration
+        ).SetEase(Ease.InOutQuad);
     }
 }

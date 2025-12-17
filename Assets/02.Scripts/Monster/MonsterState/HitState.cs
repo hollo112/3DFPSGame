@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class HitState : IMonsterState
 {
@@ -7,10 +8,11 @@ public class HitState : IMonsterState
     private Damage _damage;
     private float _timer = 0f;
     private Vector3 _knockbackVelocity;
-
+    private NavMeshAgent _agent;
     public HitState(Monster monster, IMonsterState previousState, Damage damage)
     {
         _monster = monster;
+        _agent = _monster.NavMeshAgent;
         _previousState = previousState;
         _damage = damage;
     }
@@ -21,6 +23,9 @@ public class HitState : IMonsterState
         direction.y = 0;
 
         _knockbackVelocity = direction * _damage.KnockbackForce;
+        
+        _agent.isStopped = true;
+        _agent.ResetPath();
     }
 
     public void Update()
@@ -39,6 +44,6 @@ public class HitState : IMonsterState
 
     public void Exit()
     {
-        
+        _agent.isStopped = false;
     }
 }

@@ -7,4 +7,5 @@ public class MonsterStats : MonoBehaviour
     public ValueStat Damage;
     public ValueStat MoveSpeed;
     public ValueStat AttackSpeed;
+    public ValueStat JumpPower;
 }

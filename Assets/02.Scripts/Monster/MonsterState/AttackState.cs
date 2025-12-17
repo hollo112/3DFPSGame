@@ -1,18 +1,23 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AttackState : IMonsterState
 {
     private Monster _monster;
     private float _attackTimer = 0f;
+    private NavMeshAgent _agent;
 
     public AttackState(Monster monster)
     {
         _monster = monster;
+        _agent = monster.NavMeshAgent;
     }
 
     public void Enter()
     {
         _attackTimer = 0f;
+        _agent.isStopped = true;
+        _agent.ResetPath();
     }
 
     public void Update()
@@ -27,8 +32,6 @@ public class AttackState : IMonsterState
             _monster.ChangeState(new TraceState(_monster));
             return;
         }
-        
-        _monster.Move(Vector3.zero);
 
         _attackTimer += Time.deltaTime;
 
@@ -47,6 +50,6 @@ public class AttackState : IMonsterState
 
     public void Exit()
     {
-        
+        _agent.isStopped = false;
     }
 }

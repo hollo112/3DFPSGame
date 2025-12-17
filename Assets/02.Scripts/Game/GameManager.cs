@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private EGameState _state = EGameState.Ready;
     public EGameState State => _state;
     
+    private ECameraViewMode _viewMode = ECameraViewMode.FirstPerson;
+    public ECameraViewMode ViewMode => _viewMode;
+    
     [SerializeField] private TextMeshProUGUI _stateTextUI;
     [SerializeField] private Image _crosshairImage;
 
@@ -50,5 +53,11 @@ public class GameManager : MonoBehaviour
         _stateTextUI.gameObject.SetActive(true);
         
         _stateTextUI.text = "게임오버";
+    }
+
+    public void CycleCameraMode()
+    {
+        int next = ((int)_viewMode + 1) % System.Enum.GetValues(typeof(ECameraViewMode)).Length;
+        _viewMode = (ECameraViewMode)next;
     }
 }

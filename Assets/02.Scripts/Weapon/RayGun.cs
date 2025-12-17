@@ -5,6 +5,7 @@ public class RayGun : MonoBehaviour, IFireMode
 {
     [SerializeField] private Transform _fireTransform;
     [SerializeField] private ParticleSystem _hitEffect;
+    private const float MaxFireDistance = 1000f;
     public RecoilData RecoilData{get; private set;}
     private Magazine _magazine;
     
@@ -38,15 +39,29 @@ public class RayGun : MonoBehaviour, IFireMode
     private void Fire(float damageValue)
     {
         _magazine.DecreaseMagazineSize(1);
+        
+        Vector3 targetPoint;
+        Ray centerRay = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 
-        Ray ray = new Ray(_fireTransform.position, Camera.main.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        if (Physics.Raycast(centerRay, out RaycastHit centerHit, MaxFireDistance))
         {
-            _hitEffect.transform.position = hitInfo.point;
-            _hitEffect.transform.forward = hitInfo.normal;
+            targetPoint = centerHit.point;
+        }
+        else
+        {
+            targetPoint = Camera.main.transform.position + Camera.main.transform.forward * MaxFireDistance;
+        }
+        
+        Vector3 fireDirection = (targetPoint - _fireTransform.position).normalized;
+        Ray fireRay = new Ray(_fireTransform.position, fireDirection);
+
+        if (Physics.Raycast(fireRay, out RaycastHit fireHit, MaxFireDistance))
+        {
+            _hitEffect.transform.position = fireHit.point;
+            _hitEffect.transform.forward = fireHit.normal;
             _hitEffect.Play();
 
-            if (hitInfo.collider.TryGetComponent(out IDamageable monster))
+            if (fireHit.collider.TryGetComponent(out IDamageable monster))
             {
                 Damage damage = new Damage(damageValue, transform.position);
                 monster.TryTakeDamage(damage);
