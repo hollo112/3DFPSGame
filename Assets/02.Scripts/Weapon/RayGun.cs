@@ -5,7 +5,7 @@ public class RayGun : MonoBehaviour, IFireMode
 {
     [SerializeField] private Transform _fireTransform;
     [SerializeField] private ParticleSystem _hitEffect;
-    private const float MaxFireDistance = 1000f;
+    private const float MaxFireDistance = 3000f;
     public RecoilData RecoilData{get; private set;}
     private Magazine _magazine;
     

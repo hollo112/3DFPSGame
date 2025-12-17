@@ -13,7 +13,10 @@ public class WeaponController : MonoBehaviour
     {
         _weapons = new IPlayerFire[_weaponBehaviours.Length];
         for (int i = 0; i < _weapons.Length; i++)
-            _weapons[i] = (IPlayerFire)_weaponBehaviours[i];
+        {
+            if(_weaponBehaviours[i] is IPlayerFire)
+                _weapons[i] = (IPlayerFire)_weaponBehaviours[i];
+        }
 
         Equip(0);
     }

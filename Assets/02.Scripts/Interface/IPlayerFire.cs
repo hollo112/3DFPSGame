@@ -7,5 +7,5 @@ public interface IPlayerFire
 
     public void Fire();
     public void Reload();
-    bool IsAutomatic { get; }
+    public bool IsAutomatic { get; }
 }
