@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     private float _yVelocity = 0f;
     private float _speed;
     private bool _canDoubleJump;
-    private float _groundStickVelocity = -2f;
+    private const float GroundStickVelocity = -2f;
     private Coroutine _rechargeRoutine;
     
     private CharacterController _characterController;
@@ -94,7 +94,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (_characterController.isGrounded && _yVelocity < 0f)
         {
-            _yVelocity = _groundStickVelocity; 
+            _yVelocity = GroundStickVelocity; 
         }
         else
         {

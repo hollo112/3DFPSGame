@@ -32,8 +32,6 @@ public class AttackState : IMonsterState
             _monster.ChangeState(new TraceState(_monster));
             return;
         }
-        
-        //_monster.MoveTo(Vector3.zero);
 
         _attackTimer += Time.deltaTime;
 
