@@ -4,6 +4,8 @@ using UnityEngine;
 // 마우스를 조작하면 카메라를 그 방향으로 회전하고 싶다
 public class CameraRotate : MonoBehaviour
 {
+   [SerializeField] private Transform Top;
+   
    // 게임이 시작되면 y축이 0도에서 -> -1도
    public float RotationSpeed = 200f;
    
@@ -16,7 +18,16 @@ public class CameraRotate : MonoBehaviour
    private void Update()
    {
       if (GameManager.Instance.State != EGameState.Playing) return;
-      
+      if (GameManager.Instance.ViewMode == ECameraViewMode.Top)
+      {
+         transform.rotation = Top.rotation;
+         Vector3 euler = Top.rotation.eulerAngles;
+         _accumulationX = euler.y;
+         _accumulationY = euler.x;
+         DeltaPitch = 0f;
+         _previousPitch = _accumulationY;
+         return;
+      }
       // 마우스 입력 받기
       float mouseX = Input.GetAxis("Mouse X");
       float mouseY = Input.GetAxis("Mouse Y");

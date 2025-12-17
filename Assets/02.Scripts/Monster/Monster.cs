@@ -17,7 +17,7 @@ public class Monster : MonoBehaviour, IDamageable
     public  MonsterStats Stats => _stats;
     private NavMeshAgent _navMeshAgent;
     public NavMeshAgent NavMeshAgent => _navMeshAgent;
-    public float DetectDistance {get; private set;} = 10f;
+    public float DetectDistance {get; private set;} = 15f;
     public float AttackDistance {get; private set;} = 2f;
     public float KnockbackDrag {get; private set;} = 7f;
     public float PatrolRadius{ get; private set; } = 6f;
