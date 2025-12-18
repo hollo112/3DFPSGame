@@ -14,6 +14,9 @@ public class PatrolState : IMonsterState
     {
         float patrolRadius = _monster.PatrolRadius;
         _target = _monster.OriginPosition + new Vector3(Random.Range(-patrolRadius, patrolRadius), 0, Random.Range(-patrolRadius, patrolRadius));
+       
+        _monster.Animator.ResetTrigger("Idle");
+        _monster.Animator.SetTrigger("Patrol");
     }
 
     public void Update()

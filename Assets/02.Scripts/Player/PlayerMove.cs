@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -32,6 +33,7 @@ public class PlayerMove : MonoBehaviour
     private NavMeshAgent _agent;
     private const float NavMeshSampleDistance = 2f;
     private RaycastHit _rayHitPoint;
+    private Animator _animator;
     
     public Vector3 MoveVector;
     private void Awake()
@@ -39,9 +41,7 @@ public class PlayerMove : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _stats =  GetComponent<PlayerStats>();
         _agent = GetComponent<NavMeshAgent>();
-        
-        _agent.updatePosition = false;
-        _agent.updateRotation = true;
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -122,6 +122,8 @@ public class PlayerMove : MonoBehaviour
     
     private void ApplyMovementByKeyboard()
     {
+        _agent.updatePosition = false;
+        
         if (_isJumping && _characterController.isGrounded && _yVelocity <= 0f)
         {
             OnLanded();
@@ -145,10 +147,16 @@ public class PlayerMove : MonoBehaviour
 
         MoveVector = direction * _speed * Time.deltaTime;
         _characterController.Move(direction * _speed * Time.deltaTime);
+        
+        float inputAmount = new Vector2(h, v).magnitude; 
+        float normalizedSpeed = inputAmount * (_speed / _stats.RunSpeed.Value);
+        _animator.SetFloat("Speed", normalizedSpeed);
     }
 
     private void ApplyMovementByMouse()
     {
+        _agent.updatePosition = true;
+        
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

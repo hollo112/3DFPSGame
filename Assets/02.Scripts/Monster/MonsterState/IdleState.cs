@@ -13,6 +13,8 @@ public class IdleState : IMonsterState
     public void Enter()
     {
         _timer = 0f;
+        
+        _monster.Animator.SetTrigger("Idle");
     }
 
     public void Update()

@@ -6,7 +6,6 @@ public class AttackState : IMonsterState
     private Monster _monster;
     private float _attackTimer = 0f;
     private NavMeshAgent _agent;
-
     public AttackState(Monster monster)
     {
         _monster = monster;
@@ -18,6 +17,7 @@ public class AttackState : IMonsterState
         _attackTimer = 0f;
         _agent.isStopped = true;
         _agent.ResetPath();
+        _monster.Animator.SetTrigger("AttackIdle");
     }
 
     public void Update()
@@ -39,12 +39,7 @@ public class AttackState : IMonsterState
         {
             _attackTimer = 0f;
 
-            Damage damage = new Damage(
-                _monster.Stats.Damage.Value,
-                monsterPosition
-            );
-
-            _monster.PlayerHealth.TryTakeDamage(damage);
+            _monster.Animator.SetTrigger("Attack");
         }
     }
 
