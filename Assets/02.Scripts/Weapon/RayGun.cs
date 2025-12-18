@@ -5,6 +5,11 @@ public class RayGun : MonoBehaviour, IFireMode
 {
     [SerializeField] private Transform _fireTransform;
     [SerializeField] private ParticleSystem _hitEffect;
+    
+    [SerializeField] private GameObject[] _muzzleFlash;
+    private float _muzzleDuration = 0.05f;
+    [SerializeField] private Transform _muzzleTransform;
+    
     private const float MaxFireDistance = 3000f;
     public RecoilData RecoilData{get; private set;}
     private Magazine _magazine;
@@ -22,7 +27,7 @@ public class RayGun : MonoBehaviour, IFireMode
     {
         if (_isCoolDown) return false;      
         if (_magazine.MagzineSize <= 0) return false;
-
+        
         Fire(damage);
         StartCoroutine(FireCooldownRoutine());
         
@@ -67,6 +72,21 @@ public class RayGun : MonoBehaviour, IFireMode
                 monster.TryTakeDamage(damage);
             }
         }
+        
+        StartCoroutine(MuzzleFlash_Coroutine());
+    }
+
+    private IEnumerator MuzzleFlash_Coroutine()
+    {
+        GameObject muzzleEffect = _muzzleFlash[Random.Range(0, _muzzleFlash.Length)];
+        
+        muzzleEffect.transform.position = _muzzleTransform.position;
+        muzzleEffect.transform.rotation = _muzzleTransform.rotation;
+        muzzleEffect.SetActive(true);
+        
+        yield return new WaitForSeconds(_muzzleDuration);
+        
+        muzzleEffect.SetActive(false);
     }
 
     public void Reload()
