@@ -111,12 +111,14 @@ public class PlayerMove : MonoBehaviour
             {
                 _agent.enabled = false;
             }
+            _animator.SetTrigger("Jump");
         }
         else if (_canDoubleJump && _stats.Stamina.Value > Config.JumpStaminaCost)
         {
             _yVelocity = _stats.JumpPower.Value;
             _stats.Stamina.TryConsume(Config.JumpStaminaCost);
             _canDoubleJump = false;
+            _animator.SetTrigger("Jump");
         }
     }
     

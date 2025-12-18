@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerGunFire : MonoBehaviour, IPlayerFire
 {
     [SerializeField] private RayGun _rayGun;
     [SerializeField] private CameraRecoil _cameraRecoil;
+    
     public bool IsAutomatic => true;
     private PlayerStats _playerStats;
+    private Animator _animator;
     
     private float _reloadTime = 0.6f;
     private bool _isReloading = false;
@@ -19,6 +22,7 @@ public class PlayerGunFire : MonoBehaviour, IPlayerFire
     private void Awake()
     {
         _playerStats = GetComponent<PlayerStats>();
+        _animator = GetComponentInChildren<Animator>();
     }
     public void OnSelect()
     {
@@ -36,6 +40,7 @@ public class PlayerGunFire : MonoBehaviour, IPlayerFire
 
         if (_rayGun.TryFire(_playerStats.Damage.Value))
         {
+            _animator.SetTrigger("Fire");
             _cameraRecoil.PlayRecoil(_rayGun.RecoilData);
         }
     }
