@@ -12,10 +12,9 @@ public class IdleState : IMonsterState
 
     public void Enter()
     {
-        Debug.Log("IDle");
         _timer = 0f;
-        Animator animator = _monster.Animator; 
-        animator.SetTrigger("Idle");
+        
+        _monster.Animator.SetTrigger("Idle");
     }
 
     public void Update()

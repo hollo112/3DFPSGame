@@ -11,8 +11,7 @@ public class ComebackState : IMonsterState
 
     public void Enter()
     {
-        Animator animator = _monster.Animator; 
-        animator.SetTrigger("Comeback");
+        _monster.Animator.SetTrigger("Comeback");
     }
 
     public void Update()

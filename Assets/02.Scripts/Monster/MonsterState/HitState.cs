@@ -30,7 +30,7 @@ public class HitState : IMonsterState
         _agent.ResetPath();
         
         Animator animator = _monster.Animator; 
-        animator.SetTrigger("Hit");
+        _monster.Animator.SetTrigger("Hit");
         
         _hitDuration = GetHitAnimationDuration(animator);
     }
@@ -39,9 +39,9 @@ public class HitState : IMonsterState
     {
         _timer += Time.deltaTime;
 
-        //_monster.MoveRaw(_knockbackVelocity);
+        _monster.MoveRaw(_knockbackVelocity);
 
-        //_knockbackVelocity = Vector3.MoveTowards(_knockbackVelocity, Vector3.zero, _monster.KnockbackDrag * Time.deltaTime);
+        _knockbackVelocity = Vector3.MoveTowards(_knockbackVelocity, Vector3.zero, _monster.KnockbackDrag * Time.deltaTime);
 
         if (_timer >= _hitDuration)
         {

@@ -17,8 +17,7 @@ public class DeathState : IMonsterState
     {
         _agent.isStopped = true;
         
-        Animator animator = _monster.Animator; 
-        animator.SetTrigger("Death");
+        _monster.Animator.SetTrigger("Death");
     }
 
     public void Update()
