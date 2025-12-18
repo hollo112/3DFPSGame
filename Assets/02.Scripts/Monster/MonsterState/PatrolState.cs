@@ -14,6 +14,9 @@ public class PatrolState : IMonsterState
     {
         float patrolRadius = _monster.PatrolRadius;
         _target = _monster.OriginPosition + new Vector3(Random.Range(-patrolRadius, patrolRadius), 0, Random.Range(-patrolRadius, patrolRadius));
+        Animator animator = _monster.Animator;
+        animator.ResetTrigger("Idle");
+        animator.SetTrigger("Patrol");
     }
 
     public void Update()
@@ -22,6 +25,7 @@ public class PatrolState : IMonsterState
 
         if (Vector3.Distance(_monster.transform.position, _target) < _monster.PointReach)
         {
+            Debug.Log("돌아옴");
             _monster.ChangeState(new IdleState(_monster));
             return;
         }

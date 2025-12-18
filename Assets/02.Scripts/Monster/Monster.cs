@@ -17,13 +17,15 @@ public class Monster : MonoBehaviour, IDamageable
     public  MonsterStats Stats => _stats;
     private NavMeshAgent _navMeshAgent;
     public NavMeshAgent NavMeshAgent => _navMeshAgent;
+    private Animator _animator;
+    public Animator Animator => _animator;
+    
     public float DetectDistance {get; private set;} = 15f;
     public float AttackDistance {get; private set;} = 2f;
     public float KnockbackDrag {get; private set;} = 7f;
     public float PatrolRadius{ get; private set; } = 6f;
     public float PointReach{ get; private set; } = 2f;
     public float PatrolInterval{ get; private set; } = 1.5f;
-    public float HitDuration{ get; private set; } = 0.25f;
     public float DeathDelay{ get; private set; } = 2f;
     private Vector3 _originPosition;
     public Vector3 OriginPosition => _originPosition;
@@ -45,13 +47,15 @@ public class Monster : MonoBehaviour, IDamageable
         {
             _playerHealth = _player.GetComponent<PlayerHealth>();
         }
+        _animator =  GetComponentInChildren<Animator>();
     }
     private void Start()
     {
         _originPosition = transform.position;
         ChangeState(new IdleState(this));
-        _navMeshAgent.speed = _stats.MoveSpeed.Value;
+        _navMeshAgent.speed = _stats.WalkSpeed.Value;
         _navMeshAgent.stoppingDistance = AttackDistance;
+        
     }
     
     public void ChangeState(IMonsterState newState)
@@ -69,26 +73,28 @@ public class Monster : MonoBehaviour, IDamageable
     
     public bool TryTakeDamage(Damage damage)
     {
-        if (State is HitState || State is DeathState)
+        if (State is DeathState)
         {
             return false;
         }
         
         _stats.Health.ConsumeClamped(damage.Value);
-        
-        if (_stats.Health.Value > 0)
+
+        if (_stats.Health.Value <= 0)
         {
-            // 히트 상태
-            ChangeState(new HitState(this, State, damage));
-        }
-        else
-        {
-            // 데스 상태
             ChangeState(new DeathState(this));
+            OnDamaged?.Invoke(damage);
+            return true;
         }
 
+        if (State is HitState)
+        {
+            OnDamaged?.Invoke(damage);
+            return true;
+        }
+
+        ChangeState(new HitState(this, State, damage));
         OnDamaged?.Invoke(damage);
-        
         return true;
     }
     

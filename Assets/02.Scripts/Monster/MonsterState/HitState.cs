@@ -9,6 +9,8 @@ public class HitState : IMonsterState
     private float _timer = 0f;
     private Vector3 _knockbackVelocity;
     private NavMeshAgent _agent;
+    private float _hitDuration;
+    private float _defaultAnimationDuration = 1.5f;
     public HitState(Monster monster, IMonsterState previousState, Damage damage)
     {
         _monster = monster;
@@ -26,17 +28,22 @@ public class HitState : IMonsterState
         
         _agent.isStopped = true;
         _agent.ResetPath();
+        
+        Animator animator = _monster.Animator; 
+        animator.SetTrigger("Hit");
+        
+        _hitDuration = GetHitAnimationDuration(animator);
     }
 
     public void Update()
     {
         _timer += Time.deltaTime;
 
-        _monster.MoveRaw(_knockbackVelocity);
+        //_monster.MoveRaw(_knockbackVelocity);
 
-        _knockbackVelocity = Vector3.MoveTowards(_knockbackVelocity, Vector3.zero, _monster.KnockbackDrag * Time.deltaTime);
+        //_knockbackVelocity = Vector3.MoveTowards(_knockbackVelocity, Vector3.zero, _monster.KnockbackDrag * Time.deltaTime);
 
-        if (_timer >= _monster.HitDuration)
+        if (_timer >= _hitDuration)
         {
             _monster.ChangeState(_previousState);
         }
@@ -45,5 +52,23 @@ public class HitState : IMonsterState
     public void Exit()
     {
         _agent.isStopped = false;
+    }
+    
+    private float GetHitAnimationDuration(Animator animator)
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+    
+        if (stateInfo.IsName("Hit"))
+        {
+            return stateInfo.length;
+        }
+    
+        AnimatorStateInfo nextStateInfo = animator.GetNextAnimatorStateInfo(0);
+        if (nextStateInfo.IsName("Hit"))
+        {
+            return nextStateInfo.length;
+        }
+        
+        return _defaultAnimationDuration;
     }
 }

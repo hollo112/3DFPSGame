@@ -24,6 +24,9 @@ public class JumpState : IMonsterState
         _timer = 0f;
         _agent.isStopped = true;
         _agent.ResetPath();
+        
+        Animator animator = _monster.Animator; 
+        animator.SetTrigger("Jump");
     }
 
     public void Update()

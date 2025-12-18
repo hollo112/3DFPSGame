@@ -14,7 +14,9 @@ public class TraceState : IMonsterState
 
     public void Enter()
     {
-        
+        Animator animator = _monster.Animator; 
+        animator.SetTrigger("Trace");
+        _agent.speed = _monster.Stats.RunSpeed.Value;
     }
 
     public void Update()
@@ -51,6 +53,6 @@ public class TraceState : IMonsterState
 
     public void Exit()
     {
-        
+        _agent.speed = _monster.Stats.WalkSpeed.Value;
     }
 }

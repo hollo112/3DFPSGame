@@ -16,7 +16,9 @@ public class DeathState : IMonsterState
     public void Enter()
     {
         _agent.isStopped = true;
-        // TODO: 죽는 애니메이션 호출
+        
+        Animator animator = _monster.Animator; 
+        animator.SetTrigger("Death");
     }
 
     public void Update()
