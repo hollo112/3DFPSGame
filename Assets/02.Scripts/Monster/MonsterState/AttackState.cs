@@ -3,26 +3,25 @@ using UnityEngine.AI;
 
 public class AttackState : IMonsterState
 {
-    private Monster _monster;
+    private IMonsterContext _monster;
     private float _attackTimer = 0f;
-    private NavMeshAgent _agent;
-    public AttackState(Monster monster)
+    
+    public AttackState(IMonsterContext monster)
     {
         _monster = monster;
-        _agent = monster.NavMeshAgent;
     }
 
     public void Enter()
     {
         _attackTimer = 0f;
-        _agent.isStopped = true;
-        _agent.ResetPath();
+        _monster.NavMeshAgent.isStopped = true;
+        _monster.NavMeshAgent.ResetPath();
         _monster.Animator.SetTrigger("AttackIdle");
     }
 
     public void Update()
     {
-        Vector3 monsterPosition = _monster.transform.position;
+        Vector3 monsterPosition = _monster.Transform.position;
         Vector3 playerPos = _monster.Player.transform.position;
 
         float distance = Vector3.Distance(monsterPosition, playerPos);
@@ -45,6 +44,6 @@ public class AttackState : IMonsterState
 
     public void Exit()
     {
-        _agent.isStopped = false;
+        _monster.NavMeshAgent.isStopped = false;
     }
 }

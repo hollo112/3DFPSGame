@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class ComebackState : IMonsterState
 {
-    private Monster _monster;
-
-    public ComebackState(Monster monster)
+    private IMonsterContext _monster;
+    private Vector3 _originPosition;
+    private float _pointReach;
+    
+    public ComebackState(IMonsterContext monster)
     {
         _monster = monster;
     }
@@ -16,7 +18,7 @@ public class ComebackState : IMonsterState
 
     public void Update()
     {
-        Vector3 monsterPosition = _monster.transform.position;
+        Vector3 monsterPosition = _monster.Transform.position;
         Vector3 originPosition = _monster.OriginPosition;
         Vector3 playerPosition = _monster.Player.transform.position;
 

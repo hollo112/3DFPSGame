@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 
 public class BombPoolManager : MonoBehaviour
 {
-    public static BombPoolManager Instance;
+    public static BombPoolManager Instance { get; private set; }
 
     [SerializeField] private Bomb _bombPrefab;
 
@@ -12,7 +12,15 @@ public class BombPoolManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         
         _pool = new ObjectPool<Bomb>(
             CreateBomb,
@@ -22,6 +30,7 @@ public class BombPoolManager : MonoBehaviour
             maxSize: _poolSize
         );
     }
+    
     private Bomb CreateBomb()
     {
         Bomb bomb = Instantiate(_bombPrefab);

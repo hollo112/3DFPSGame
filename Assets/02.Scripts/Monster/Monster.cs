@@ -2,39 +2,54 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Monster : MonoBehaviour, IDamageable
+public class Monster : MonoBehaviour, IDamageable, IMonsterContext
 {
     public IMonsterState State { get; private set; }
     
+    public Transform Transform => transform;
+    public Animator Animator => _animator;
+    public NavMeshAgent NavMeshAgent => _navMeshAgent;
+    public GameObject Player => _player;
+    public MonsterStats Stats => _stats;
+    public float AttackDistance => _attackDistance;
+    public float DetectDistance => _detectDistance;
+    
     private GameObject _player;
     private const string PlayerTag = "Player";
-    public GameObject Player => _player;
+
     private PlayerHealth _playerHealth;
     public PlayerHealth PlayerHealth => _playerHealth;
+
     private CharacterController _controller;
     public CharacterController Controller => _controller;
+
     private MonsterStats _stats;
-    public  MonsterStats Stats => _stats;
     private NavMeshAgent _navMeshAgent;
-    public NavMeshAgent NavMeshAgent => _navMeshAgent;
     private Animator _animator;
-    public Animator Animator => _animator;
     
-    public float DetectDistance {get; private set;} = 15f;
-    public float AttackDistance {get; private set;} = 2f;
-    public float KnockbackDrag {get; private set;} = 7f;
-    public float PatrolRadius{ get; private set; } = 6f;
-    public float PointReach{ get; private set; } = 2f;
-    public float PatrolInterval{ get; private set; } = 1.5f;
-    public float DeathDelay{ get; private set; } = 2f;
+    [SerializeField] private float _detectDistance = 15f;
+    [SerializeField] private float _attackDistance = 2f;
+    [SerializeField] private float _knockbackDrag = 7f;
+    [SerializeField] private float _patrolRadius = 6f;
+    [SerializeField] private float _pointReach = 2f;
+    [SerializeField] private float _patrolInterval = 1.5f;
+    [SerializeField] private float _deathDelay = 2f;
+    
+    public float KnockbackDrag => _knockbackDrag;
+    public float PatrolRadius => _patrolRadius;
+    public float PointReach => _pointReach;
+    public float PatrolInterval => _patrolInterval;
+    public float DeathDelay => _deathDelay;
+    
     private Vector3 _originPosition;
     public Vector3 OriginPosition => _originPosition;
-    
+
     private float _yVelocity = 0f;
     [SerializeField] private float _gravity = -9.81f;
     public float YVelocity => _yVelocity;
+
     private float _rotateSpeed = 10f;
-    
+
     public event Action<Damage> OnDamaged;
     
     private void Awake()
@@ -49,6 +64,7 @@ public class Monster : MonoBehaviour, IDamageable
         }
         _animator =  GetComponentInChildren<Animator>();
     }
+    
     private void Start()
     {
         _originPosition = transform.position;

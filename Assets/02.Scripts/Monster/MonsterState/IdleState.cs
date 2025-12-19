@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class IdleState : IMonsterState
 {
-    private Monster _monster;
+    private IMonsterContext _monster;
     private float _timer = 0f;
     
-    public IdleState(Monster monster)
+    public IdleState(IMonsterContext monster)
     {
         _monster = monster;
     }
@@ -21,7 +21,7 @@ public class IdleState : IMonsterState
     {
         _timer += Time.deltaTime;
 
-        if (Vector3.Distance(_monster.transform.position, _monster.Player.transform.position) <= _monster.DetectDistance)
+        if (Vector3.Distance(_monster.Transform.position, _monster.Player.transform.position) <= _monster.DetectDistance)
         {
             _monster.ChangeState(new TraceState(_monster));
             return;

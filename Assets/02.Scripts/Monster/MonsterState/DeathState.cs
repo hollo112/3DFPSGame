@@ -3,19 +3,17 @@ using UnityEngine.AI;
 
 public class DeathState : IMonsterState
 {
-    private Monster _monster;
-    private NavMeshAgent _agent;
+    private IMonsterContext _monster;
     private float _timer = 0f;
 
-    public DeathState(Monster monster)
+    public DeathState(IMonsterContext monster)
     {
         _monster = monster;
-        _agent = monster.NavMeshAgent;
     }
 
     public void Enter()
     {
-        _agent.isStopped = true;
+        _monster.NavMeshAgent.isStopped = true;
         
         _monster.Animator.SetTrigger("Death");
     }
@@ -26,7 +24,7 @@ public class DeathState : IMonsterState
 
         if (_timer >= _monster.DeathDelay)
         {
-            GameObject.Destroy(_monster.gameObject);
+            GameObject.Destroy(_monster.Transform.gameObject);
         }
     }
 

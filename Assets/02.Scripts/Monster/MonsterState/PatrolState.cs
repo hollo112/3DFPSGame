@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PatrolState : IMonsterState
 {
-    private Monster _monster;
+    private IMonsterContext _monster;
     private Vector3 _target;
 
-    public PatrolState(Monster monster)
+    public PatrolState(IMonsterContext monster)
     {
         _monster = monster;
     }
@@ -23,13 +23,13 @@ public class PatrolState : IMonsterState
     {
         _monster.MoveTo(_target);
 
-        if (Vector3.Distance(_monster.transform.position, _target) < _monster.PointReach)
+        if (Vector3.Distance(_monster.Transform.position, _target) < _monster.PointReach)
         {
             _monster.ChangeState(new IdleState(_monster));
             return;
         }
 
-        if (Vector3.Distance(_monster.transform.position, _monster.Player.transform.position) <= _monster.DetectDistance)
+        if (Vector3.Distance(_monster.Transform.position, _monster.Player.transform.position) <= _monster.DetectDistance)
         {
             _monster.ChangeState(new TraceState(_monster));
         }

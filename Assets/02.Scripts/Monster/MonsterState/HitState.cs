@@ -3,31 +3,29 @@ using UnityEngine.AI;
 
 public class HitState : IMonsterState
 {
-    private Monster _monster;
+    private IMonsterContext _monster;
     private IMonsterState _previousState;
     private Damage _damage;
     private float _timer = 0f;
     private Vector3 _knockbackVelocity;
-    private NavMeshAgent _agent;
     private float _hitDuration;
     private float _defaultAnimationDuration = 1.5f;
-    public HitState(Monster monster, IMonsterState previousState, Damage damage)
+    public HitState(IMonsterContext monster, IMonsterState previousState, Damage damage)
     {
         _monster = monster;
-        _agent = _monster.NavMeshAgent;
         _previousState = previousState;
         _damage = damage;
     }
 
     public void Enter()
     {
-        Vector3 direction = (_monster.transform.position - _damage.AttackerPosition).normalized;
+        Vector3 direction = (_monster.Transform.position - _damage.AttackerPosition).normalized;
         direction.y = 0;
 
         _knockbackVelocity = direction * _damage.KnockbackForce;
         
-        _agent.isStopped = true;
-        _agent.ResetPath();
+        _monster.NavMeshAgent.isStopped = true;
+        _monster.NavMeshAgent.ResetPath();
         
         Animator animator = _monster.Animator; 
         _monster.Animator.SetTrigger("Hit");
@@ -51,7 +49,7 @@ public class HitState : IMonsterState
 
     public void Exit()
     {
-        _agent.isStopped = false;
+        _monster.NavMeshAgent.isStopped = false;
     }
     
     private float GetHitAnimationDuration(Animator animator)
