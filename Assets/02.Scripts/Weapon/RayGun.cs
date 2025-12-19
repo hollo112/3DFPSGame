@@ -9,7 +9,7 @@ public class RayGun : MonoBehaviour, IFireMode
     [SerializeField] private GameObject[] _muzzleFlash;
     private float _muzzleDuration = 0.05f;
     [SerializeField] private Transform _muzzleTransform;
-    [SerializeField] private Transform _tralTransform;
+    [SerializeField] private Transform _trailTransform;
     private const float MaxFireDistance = 3000f;
     [SerializeField]private float _trailSpeed = 100f;
     public RecoilData RecoilData{get; private set;}
@@ -77,7 +77,7 @@ public class RayGun : MonoBehaviour, IFireMode
         }
         
         BulletTrail trail = BulletTrailPoolManager.Instance.Get();
-        trail.Play(_tralTransform.position, hitPoint, _trailSpeed);
+        trail.Play(_trailTransform.position, hitPoint, _trailSpeed);
         
         StartCoroutine(MuzzleFlash_Coroutine());
     }

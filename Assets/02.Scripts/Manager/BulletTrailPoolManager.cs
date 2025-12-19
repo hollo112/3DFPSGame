@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 
 public class BulletTrailPoolManager : MonoBehaviour
 {
-    public static BulletTrailPoolManager Instance;
+    public static BulletTrailPoolManager Instance { get; private set; }
 
     [SerializeField] private BulletTrail _bulletTrailPrefab;
     [SerializeField] private int _poolSize = 60;
@@ -12,7 +12,15 @@ public class BulletTrailPoolManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         _pool = new ObjectPool<BulletTrail>(
             CreateTrail,
