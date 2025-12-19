@@ -3,24 +3,22 @@ using UnityEngine.AI;
 
 public class TraceState : IMonsterState
 {
-    private Monster _monster;
-    private NavMeshAgent _agent;
+    private IMonsterContext _monster;
     
-    public TraceState(Monster monster)
+    public TraceState(IMonsterContext monster)
     {
         _monster = monster;
-        _agent = monster.NavMeshAgent;
     }
 
     public void Enter()
     {
         _monster.Animator.SetTrigger("Trace");
-        _agent.speed = _monster.Stats.RunSpeed.Value;
+        _monster.NavMeshAgent.speed = _monster.Stats.RunSpeed.Value;
     }
 
     public void Update()
     {
-        Vector3 monsterPosition = _monster.transform.position;
+        Vector3 monsterPosition = _monster.Transform.position;
         Vector3 playerPosition = _monster.Player.transform.position;
 
         float distance = Vector3.Distance(monsterPosition, playerPosition);
@@ -39,19 +37,19 @@ public class TraceState : IMonsterState
         
         _monster.MoveTo(playerPosition);
 
-        if (_agent.isOnOffMeshLink)
+        if (_monster.NavMeshAgent.isOnOffMeshLink)
         {
-            OffMeshLinkData data = _agent.currentOffMeshLinkData;
+            OffMeshLinkData data = _monster.NavMeshAgent.currentOffMeshLinkData;
 
-            Vector3 start = _monster.transform.position;
+            Vector3 start = _monster.Transform.position;
             Vector3 end   = data.endPos;
-            end.y += _agent.baseOffset;
+            end.y += _monster.NavMeshAgent.baseOffset;
             _monster.ChangeState(new JumpState(_monster, start, end));
         }
     }
 
     public void Exit()
     {
-        _agent.speed = _monster.Stats.WalkSpeed.Value;
+        _monster.NavMeshAgent.speed = _monster.Stats.WalkSpeed.Value;
     }
 }

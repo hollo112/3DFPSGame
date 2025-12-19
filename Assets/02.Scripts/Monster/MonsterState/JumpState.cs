@@ -3,18 +3,16 @@ using UnityEngine.AI;
 
 public class JumpState : IMonsterState
 {
-    private Monster _monster;
-    private NavMeshAgent _agent;
+    private IMonsterContext _monster;
     private Vector3 _start;
     private Vector3 _end;
     
     private float _duration = 0.6f;     // 점프 시간
     private float _jumpHeight = 2.5f;   // 점프 높이
     private float _timer;
-    public JumpState(Monster monster, Vector3 start, Vector3 end)
+    public JumpState(IMonsterContext monster, Vector3 start, Vector3 end)
     {
         _monster = monster;
-        _agent = monster.NavMeshAgent;
         _start = start;
         _end = end;
     }
@@ -22,8 +20,8 @@ public class JumpState : IMonsterState
     public void Enter()
     {
         _timer = 0f;
-        _agent.isStopped = true;
-        _agent.ResetPath();
+        _monster.NavMeshAgent.isStopped = true;
+        _monster.NavMeshAgent.ResetPath();
         
         _monster.Animator.SetTrigger("Jump");
     }
@@ -38,7 +36,7 @@ public class JumpState : IMonsterState
         float jumpY = _jumpHeight * Mathf.Sin(Mathf.PI * time);
         position.y += jumpY;
 
-        _monster.transform.position = position;
+        _monster.Transform.position = position;
 
         Vector3 direction = (_end - position);
         direction.y = 0f;
@@ -47,16 +45,16 @@ public class JumpState : IMonsterState
 
         if (time >= 1f)
         {
-            _agent.updatePosition = true;
-            _agent.updateRotation = true;
+            _monster.NavMeshAgent.updatePosition = true;
+            _monster.NavMeshAgent.updateRotation = true;
 
-            _agent.CompleteOffMeshLink(); 
+            _monster.NavMeshAgent.CompleteOffMeshLink(); 
             _monster.ChangeState(new TraceState(_monster));
         }
     }
 
     public void Exit()
     {
-        _agent.isStopped = false;
+        _monster.NavMeshAgent.isStopped = false;
     }
 }

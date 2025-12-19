@@ -9,8 +9,9 @@ public class RayGun : MonoBehaviour, IFireMode
     [SerializeField] private GameObject[] _muzzleFlash;
     private float _muzzleDuration = 0.05f;
     [SerializeField] private Transform _muzzleTransform;
-    
+    [SerializeField] private Transform _tralTransform;
     private const float MaxFireDistance = 3000f;
+    [SerializeField]private float _trailSpeed = 100f;
     public RecoilData RecoilData{get; private set;}
     private Magazine _magazine;
     
@@ -59,9 +60,11 @@ public class RayGun : MonoBehaviour, IFireMode
         
         Vector3 fireDirection = (targetPoint - _fireTransform.position).normalized;
         Ray fireRay = new Ray(_fireTransform.position, fireDirection);
-
+        Vector3 hitPoint = _fireTransform.position + fireDirection * MaxFireDistance;
+        
         if (Physics.Raycast(fireRay, out RaycastHit fireHit, MaxFireDistance))
         {
+            hitPoint = fireHit.point;
             _hitEffect.transform.position = fireHit.point;
             _hitEffect.transform.forward = fireHit.normal;
             _hitEffect.Play();
@@ -72,6 +75,9 @@ public class RayGun : MonoBehaviour, IFireMode
                 monster.TryTakeDamage(damage);
             }
         }
+        
+        BulletTrail trail = BulletTrailPoolManager.Instance.Get();
+        trail.Play(_tralTransform.position, hitPoint, _trailSpeed);
         
         StartCoroutine(MuzzleFlash_Coroutine());
     }
