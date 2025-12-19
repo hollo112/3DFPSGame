@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerBombFire : MonoBehaviour, IPlayerFire
 {
     [SerializeField] private Transform _fireTransform;
-    [SerializeField] private float _throwPower = 15f;
     private PlayerStats _stats;
     private Animator _animator;
     

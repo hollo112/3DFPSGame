@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class RayGun : MonoBehaviour, IFireMode
 {
@@ -71,7 +72,12 @@ public class RayGun : MonoBehaviour, IFireMode
 
             if (fireHit.collider.TryGetComponent(out IDamageable monster))
             {
-                Damage damage = new Damage(damageValue, transform.position);
+                Damage damage = new Damage()
+                {
+                    Value = damageValue,
+                    AttackerPosition = transform.position,
+                    Normal = fireHit.normal,
+                };
                 monster.TryTakeDamage(damage);
             }
         }

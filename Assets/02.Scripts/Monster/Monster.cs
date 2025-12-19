@@ -27,6 +27,7 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
     private NavMeshAgent _navMeshAgent;
     private Animator _animator;
     
+    [SerializeField] GameObject _bloodEffectPrefab;
     [SerializeField] private float _detectDistance = 15f;
     [SerializeField] private float _attackDistance = 2f;
     [SerializeField] private float _knockbackDrag = 7f;
@@ -95,6 +96,9 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
         }
         
         _stats.Health.ConsumeClamped(damage.Value);
+        
+        // GameObject bloodEffect = Instantiate(_bloodEffectPrefab, transform.position, Quaternion.identity, transform);
+        // bloodEffect.transform.forward = damage.Normal;
 
         if (_stats.Health.Value <= 0)
         {
