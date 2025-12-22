@@ -28,6 +28,7 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
     private Animator _animator;
     
     [SerializeField] GameObject _bloodEffectPrefab;
+    [SerializeField] GameObject _coinPrefab;
     [SerializeField] private float _detectDistance = 15f;
     [SerializeField] private float _attackDistance = 2f;
     [SerializeField] private float _knockbackDrag = 7f;
@@ -35,7 +36,7 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
     [SerializeField] private float _pointReach = 2f;
     [SerializeField] private float _patrolInterval = 1.5f;
     [SerializeField] private float _deathDelay = 2f;
-    
+    [SerializeField] private int _coinCount = 10;
     public float KnockbackDrag => _knockbackDrag;
     public float PatrolRadius => _patrolRadius;
     public float PointReach => _pointReach;
@@ -152,6 +153,15 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
         else
         {
             _yVelocity += _gravity * Time.deltaTime;
+        }
+    }
+
+    public void MakeCoin()
+    {
+        for (int i = 0; i < _coinCount; i++)
+        {
+            Debug.Log("Making coin");
+            Instantiate(_coinPrefab, transform.position, Quaternion.identity);    
         }
     }
 }
