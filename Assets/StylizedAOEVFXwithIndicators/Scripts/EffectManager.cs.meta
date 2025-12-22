@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: 99c9720ab356a0642a771bea13969a05
-DefaultImporter:
+guid: 717a95b2861b2c0488f7d570dd4bb1b9
+MonoImporter:
   externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +14,5 @@ AssetOrigin:
   productId: 274300
   packageName: Stylized AOE VFX with Indicators
   packageVersion: 1.1.1
-  assetPath: Assets/01.Scenes/SampleScene.unity
+  assetPath: Assets/StylizedAOEVFXwithIndicators/Scripts/EffectManager.cs
   uploadId: 659150

@@ -8,6 +8,7 @@ public interface  IMonsterContext
     void MoveTo(Vector3 position);
     void MoveRaw(Vector3 velocity);
     void RotateToward(Vector3 direction);
+    void InvokeAttack();
     
     Transform Transform { get; }
     Animator Animator { get; }

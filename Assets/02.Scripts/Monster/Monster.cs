@@ -53,6 +53,7 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
     private float _rotateSpeed = 10f;
 
     public event Action<Damage> OnDamaged;
+    public event Action<float> OnAttackWithRadius;
     
     private void Awake()
     {
@@ -163,5 +164,10 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
             Debug.Log("Making coin");
             Instantiate(_coinPrefab, transform.position, Quaternion.identity);    
         }
+    }
+    
+    public void InvokeAttack()
+    {
+        OnAttackWithRadius?.Invoke(_attackDistance);
     }
 }

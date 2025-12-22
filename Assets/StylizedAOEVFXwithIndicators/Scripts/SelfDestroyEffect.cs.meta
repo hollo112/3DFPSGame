@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: 99c9720ab356a0642a771bea13969a05
-DefaultImporter:
+guid: f0c71a6d2387b2c43994066849084ae0
+MonoImporter:
   externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +14,5 @@ AssetOrigin:
   productId: 274300
   packageName: Stylized AOE VFX with Indicators
   packageVersion: 1.1.1
-  assetPath: Assets/01.Scenes/SampleScene.unity
+  assetPath: Assets/StylizedAOEVFXwithIndicators/Scripts/SelfDestroyEffect.cs
   uploadId: 659150

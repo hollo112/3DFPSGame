@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 99c9720ab356a0642a771bea13969a05
-DefaultImporter:
+guid: 0daf8db8e61559f4b97e894d66bf5a72
+VisualEffectImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 274300
   packageName: Stylized AOE VFX with Indicators
   packageVersion: 1.1.1
-  assetPath: Assets/01.Scenes/SampleScene.unity
+  assetPath: Assets/StylizedAOEVFXwithIndicators/VFX/DecalVFX/DecalLightning.vfx
   uploadId: 659150

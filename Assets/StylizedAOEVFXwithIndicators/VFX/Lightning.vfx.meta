@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 99c9720ab356a0642a771bea13969a05
-DefaultImporter:
+guid: b274d6ae70be8c644b4bffda750c0195
+VisualEffectImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 
@@ -10,5 +10,5 @@ AssetOrigin:
   productId: 274300
   packageName: Stylized AOE VFX with Indicators
   packageVersion: 1.1.1
-  assetPath: Assets/01.Scenes/SampleScene.unity
+  assetPath: Assets/StylizedAOEVFXwithIndicators/VFX/Lightning.vfx
   uploadId: 659150

@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class MonsterAnimationEvent : MonoBehaviour
 {
     private Monster _monster;
-
+    
     private void Awake()
     {
         _monster = GetComponentInParent<Monster>();
