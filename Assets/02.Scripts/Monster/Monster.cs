@@ -156,7 +156,7 @@ public class Monster : MonoBehaviour, IDamageable, IMonsterContext
             _yVelocity += _gravity * Time.deltaTime;
         }
     }
-
+    
     public void MakeCoin()
     {
         for (int i = 0; i < _coinCount; i++)
