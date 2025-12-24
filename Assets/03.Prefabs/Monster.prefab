@@ -131,6 +131,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6c9ff840d8c7f43b5e8a3d4fb5ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bloodEffectPrefab: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+  _coinPrefab: {fileID: 1498403948531744, guid: fa2c57d3f28a5e6419393e8bc3eeb32a, type: 3}
+  _detectDistance: 15
+  _attackDistance: 2
+  _knockbackDrag: 7
+  _patrolRadius: 6
+  _pointReach: 2
+  _patrolInterval: 1.5
+  _deathDelay: 2
+  _coinCount: 6
   _gravity: -9.81
 --- !u!114 &1028663748852937938
 MonoBehaviour:

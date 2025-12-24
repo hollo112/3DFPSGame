@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class DeathState : IMonsterState
 {
     private IMonsterContext _monster;
+    private Monster _monsterScript;
     private float _timer = 0f;
 
     public DeathState(IMonsterContext monster)
@@ -16,6 +17,7 @@ public class DeathState : IMonsterState
         _monster.NavMeshAgent.isStopped = true;
         
         _monster.Animator.SetTrigger("Death");
+        _monsterScript = _monster as Monster;
     }
 
     public void Update()
@@ -24,6 +26,7 @@ public class DeathState : IMonsterState
 
         if (_timer >= _monster.DeathDelay)
         {
+            _monsterScript.MakeCoin();
             GameObject.Destroy(_monster.Transform.gameObject);
         }
     }

@@ -8,9 +8,14 @@ public class PlayerGunFire : MonoBehaviour, IPlayerFire
     [SerializeField] private RayGun _rayGun;
     [SerializeField] private CameraRecoil _cameraRecoil;
     
+    private EZoomMode _zoomMode = EZoomMode.Normal;
+    [SerializeField] private GameObject _normalCrosshair;
+    [SerializeField] private GameObject _zoomInCrosshair;
+    
     public bool IsAutomatic => true;
     private PlayerStats _playerStats;
     private Animator _animator;
+
     
     private float _reloadTime = 0.6f;
     private bool _isReloading = false;
@@ -51,29 +56,28 @@ public class PlayerGunFire : MonoBehaviour, IPlayerFire
             StartCoroutine(Reload_Coroutine());
     }
     
-    // private void Update()
-    // {
-    //     if (GameManager.Instance.State != EGameState.Playing) return;
-    //     if (!CursorManager.Instance.IsLocked) return;
-    //     if (Input.GetKeyDown(KeyCode.R))
-    //     {
-    //         if (!_isReloading)
-    //         {
-    //             StartCoroutine(Reload_Coroutine());
-    //         }
-    //     }
-    //         
-    //
-    //     if (Input.GetMouseButton(0))
-    //     {
-    //         if (_isReloading) return;
-    //         
-    //         if (_rayGun.TryFire(_playerStats.Damage.Value))
-    //         {
-    //             _cameraRecoil.PlayRecoil(_rayGun.RecoilData);
-    //         }
-    //     }
-    // }
+    private void Update()
+    {
+        ZoomModeCheck();
+    }
+
+    private void ZoomModeCheck()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            _zoomMode = EZoomMode.ZoomIn;
+            _normalCrosshair.SetActive(false);
+            _zoomInCrosshair.SetActive(true);
+            Camera.main.fieldOfView = 10f;
+        }
+        else
+        {
+            _zoomMode = EZoomMode.Normal;
+            _normalCrosshair.SetActive(true);
+            _zoomInCrosshair.SetActive(false);
+            Camera.main.fieldOfView = 60f;
+        }
+    }
 
     private IEnumerator Reload_Coroutine()
     {

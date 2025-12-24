@@ -57,7 +57,12 @@ public class Bomb : MonoBehaviour
         {
             if (_hits[i].TryGetComponent(out IDamageable damageable))
             {
-                Damage damage = new Damage(_damageValue, transform.position, _knockbackForce);
+                Damage damage = new Damage()
+                {
+                    Value = _damageValue,
+                    AttackerPosition = transform.position,
+                    KnockbackForce = _knockbackForce,
+                };
                 damageable.TryTakeDamage(damage);
             }
         }

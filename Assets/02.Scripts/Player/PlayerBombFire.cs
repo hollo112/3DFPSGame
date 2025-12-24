@@ -3,7 +3,10 @@ using UnityEngine;
 public class PlayerBombFire : MonoBehaviour, IPlayerFire
 {
     [SerializeField] private Transform _fireTransform;
-    [SerializeField] private float _throwPower = 15f;
+    [SerializeField] private int _maxBombCount = 5;
+    private int _bombCount;
+    public int BombCount => _bombCount;
+
     private PlayerStats _stats;
     private Animator _animator;
     
@@ -14,11 +17,16 @@ public class PlayerBombFire : MonoBehaviour, IPlayerFire
         _stats = GetComponent<PlayerStats>();
         _animator  = GetComponentInChildren<Animator>();
     }
+
+    private void Start()
+    {
+        _bombCount = _maxBombCount;
+    }
     public void OnSelect() { }
     public void OnDeselect() { }
     public void Fire()
     {
-        if (_stats.BombCount.Value <= 0) return;
+        if (_bombCount <= 0) return;
 
         // Bomb bomb = BombPoolManager.Instance.Get();
         // bomb.transform.position = _fireTransform.position;
@@ -27,8 +35,8 @@ public class PlayerBombFire : MonoBehaviour, IPlayerFire
         // bomb.Shoot(_throwPower);
         
         _animator.SetTrigger("Throw");
-        
-        _stats.BombCount.Decrease(1);
+
+        _bombCount--;
     }
     public void Reload()
     {

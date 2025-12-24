@@ -37,8 +37,9 @@ public class AttackState : IMonsterState
         if (_attackTimer >= _monster.Stats.AttackSpeed.Value)
         {
             _attackTimer = 0f;
-
+            
             _monster.Animator.SetTrigger("Attack");
+            _monster.InvokeAttack();
         }
     }
 

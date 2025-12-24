@@ -20,13 +20,6 @@ public class CursorManager : MonoBehaviour
         LockCursor();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ToggleCursor();
-        }
-    }
 
     public void LockCursor()
     {
@@ -40,13 +33,5 @@ public class CursorManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         _isLocked = false;
-    }
-    
-    private void ToggleCursor()
-    {
-        if (_isLocked)
-            UnlockCursor();
-        else
-            LockCursor();
     }
 }
