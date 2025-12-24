@@ -1,7 +1,7 @@
 using System.Collections;
 using TMPro;
-using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI _stateTextUI;
     [SerializeField] private Image _crosshairImage;
-
+    [SerializeField] private UI_OptionPopup _optionPopupUI;
     private void Awake()
     {
         _instance = this;
@@ -60,5 +60,38 @@ public class GameManager : MonoBehaviour
     {
         int next = ((int)_viewMode + 1) % System.Enum.GetValues(typeof(ECameraViewMode)).Length;
         _viewMode = (ECameraViewMode)next;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+            _optionPopupUI.Show();
+        }
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = 0;
+        CursorManager.Instance.UnlockCursor();
+    }
+
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        CursorManager.Instance.LockCursor();
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("LoadingScene");
+    }
+
+    public void Quit()
+    {
+        
+        Application.Quit();
     }
 }
