@@ -4,7 +4,7 @@ public class PlayerRotate : MonoBehaviour
 {
     public float RotationSpeed = 200f;
     private float _accumulationX = 0;
-    
+
     private void Update()
     {
         if (GameManager.Instance.State != EGameState.Playing) return;
