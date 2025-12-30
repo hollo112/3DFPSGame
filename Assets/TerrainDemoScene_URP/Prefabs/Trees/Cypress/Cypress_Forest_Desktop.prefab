@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 5
   m_IsActive: 1
 --- !u!4 &6473924785555213175
 Transform:
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f995df3418732fb4ea23b356c02e25fd, type: 2}
@@ -114,7 +114,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 5
   m_IsActive: 1
 --- !u!4 &2512287569729260022
 Transform:
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f995df3418732fb4ea23b356c02e25fd, type: 2}
@@ -242,7 +242,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 5
   m_IsActive: 1
 --- !u!4 &8244344588647882720
 Transform:
@@ -287,7 +287,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f995df3418732fb4ea23b356c02e25fd, type: 2}
@@ -382,11 +382,11 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 2502640412902653883}
-  - screenRelativeHeight: 0.02976629
+  - screenRelativeHeight: 0.12936056
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 6144619509121006690}
-  - screenRelativeHeight: 0.004869537
+  - screenRelativeHeight: 0.044361226
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 5143404626291782099}
@@ -429,7 +429,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 5
   m_IsActive: 1
 --- !u!4 &9202809099414472143
 Transform:
@@ -474,7 +474,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 257
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 6e96b44ff17a7de4a859752d4aa68e3d, type: 2}

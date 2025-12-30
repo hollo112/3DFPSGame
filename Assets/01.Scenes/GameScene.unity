@@ -1720,7 +1720,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -2223,7 +2223,7 @@ Terrain:
   m_ScaleInLightmap: 0.0256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 1
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -3608,9 +3608,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3770,9 +3778,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4963,9 +4979,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5498,9 +5522,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7067,9 +7099,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7383,9 +7423,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7557,7 +7605,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -8505,9 +8553,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8812,9 +8868,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9446,9 +9510,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11371,9 +11443,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13165,9 +13245,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13936,9 +14024,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14433,9 +14529,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15133,9 +15237,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17044,7 +17156,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -19581,9 +19693,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20509,7 +20629,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -20602,7 +20722,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -21490,9 +21610,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22210,9 +22338,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22533,9 +22669,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22790,9 +22934,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24026,7 +24178,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -25984,9 +26136,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28622,9 +28782,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -31910,7 +32078,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -32162,7 +32330,7 @@ Terrain:
   m_ScaleInLightmap: 0.256
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_AllowAutoConnect: 1
   m_EnableHeightmapRayTracing: 1
   m_EnableTreesAndDetailsRayTracing: 0
@@ -32275,9 +32443,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -36816,9 +36992,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37178,9 +37362,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
+      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 3447900309241381915, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39015,10 +39207,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1723289395}
     m_Modifications:
-    - target: {fileID: 1468057517499381664, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2258225869528357607, guid: d2420b29e97767a499f1a0fcbc314b3a, type: 3}
       propertyPath: m_Name
       value: StreetLampRound1B (1)
